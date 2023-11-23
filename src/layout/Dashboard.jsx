@@ -6,10 +6,12 @@ import { MdOutlinePayment } from "react-icons/md";
 import { MdOutlineReviews } from "react-icons/md";
 import { TbBrandBooking } from "react-icons/tb";
 import { FaAd, FaBook, FaList, FaUser, FaUtensils } from "react-icons/fa";
+import useAdmin from "../components/hooks/useAdmin";
 
 
 const Dashboard = () => {
-    const isAdmin = true;
+    const [isAdmin] = useAdmin();
+
     return (
         <div className="flex">
             <div className="w-64 min-h-screen bg-orange-600 p-4">

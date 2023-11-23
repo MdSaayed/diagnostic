@@ -34,7 +34,7 @@ const AllUsers = () => {
                 });
                 axiosSecuire.delete(`users/${_id}`)
                     .catch(err => console.log(err));
-                refetch(); 
+                refetch();
             }
         });
     }
