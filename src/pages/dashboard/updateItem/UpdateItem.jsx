@@ -1,22 +1,23 @@
 import { useForm } from "react-hook-form";
-import SectionTitle from "../../../components/sectionTitle/SectionTitle";
-import useAxiosPublic from './../../../components/hooks/useAxiosPublic';
-import useAxiosSecuire from '../../../components/hooks/useAxiosSecure'
-import { toast } from "react-toastify";
+import useAxiosPublic from "../../../components/hooks/useAxiosPublic";
+import useAxiosSecure from "../../../components/hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import SectionTitle from './../../../components/sectionTitle/SectionTitle';
+import { useLoaderData } from "react-router-dom";
+
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
+const UpdateItem = () => {
+    const data = useLoaderData();
+    console.log(data)
 
-const AddItems = () => {
     const { register, handleSubmit, reset } = useForm();
     const axiosPublic = useAxiosPublic();
-    const axiosSecuire = useAxiosSecuire();
-
+    const axiosSecuire = useAxiosSecure();
     const onSubmit = async (data) => {
         const imageFile = { image: data.image[0] };
-        console.log(imageFile);
         const res = await axiosPublic.post(image_hosting_api, imageFile, {
             headers: { "content-type": "multipart/form-data" }
         });
@@ -33,7 +34,7 @@ const AddItems = () => {
             if (menuRes.data.insertedId) {
                 reset();
                 Swal.fire({
-                    title: `${data.name} adde to the menu`,
+                    title: `${data.name} Update the menu item`,
                     showClass: {
                         popup: `
                         animate__animated
@@ -52,18 +53,17 @@ const AddItems = () => {
             }
         }
     }
-
     return (
         <div>
-            <SectionTitle heading='Add An Item' subHeading='Whats New' />
+            <SectionTitle heading='Update itme' subHeading='Update menu item info' />
             <div className="flex items-center justify-center">
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <label className="font-medium" htmlFor="">Recipe Name</label>
-                    <input className="border py-1 px-2 w-full mb-2" {...register("name")} placeholder="Recipe Name" />
+                    <input className="border py-1 px-2 w-full mb-2"  {...register("name")} placeholder="Recipe Name" />
                     <div className="flex gap-4">
                         <div>
                             <label className="font-medium" htmlFor="">Category</label>
-                            <select className="border py-1 px-2 w-full mb-2" {...register("category")}>
+                            <select className="border py-1 px-2 w-full mb-2"  {...register("category")}>
                                 <option value="pizza">Pizza</option>
                                 <option value="dessert">Dessert</option>
                                 <option value="soup">Soup</option>
@@ -72,11 +72,11 @@ const AddItems = () => {
                         </div>
                         <div>
                             <label className="font-medium" htmlFor="price">Price</label>
-                            <input className="border py-1 px-2 mb-2 w-full" {...register("price")} type="number" placeholder="Price" />
+                            <input className="border py-1 px-2 mb-2 w-full"  {...register("price")} type="number" placeholder="Price" />
                         </div>
                     </div>
                     <label className="font-medium" htmlFor="">Recipe Details</label>
-                    <textarea className="border py-1 px-2 mb-2 w-full" {...register("recipe")} placeholder="Recipe Details"></textarea>
+                    <textarea className="border py-1 px-2 mb-2 w-full"  {...register("recipe")} placeholder="Recipe Details"></textarea>
                     <input className="border py-1 px-2 mb-2 w-full" {...register("image")} type="file" id="" />
                     <input type="submit" value='Add item' className="bg-orange-600 text-white rounded-sm px-4 py-1" />
                 </form>
@@ -85,4 +85,5 @@ const AddItems = () => {
     );
 };
 
-export default AddItems;
+export default UpdateItem;
+

@@ -1,4 +1,4 @@
-import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../firebse/firebase.config";
 import useAxiosPublic from './../components/hooks/useAxiosPublic';
@@ -6,19 +6,27 @@ import useAxiosPublic from './../components/hooks/useAxiosPublic';
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState();
-    const [loading, setLoading] = useState();
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
     const googleProvider = new GoogleAuthProvider();
     const axiosPublic = useAxiosPublic();
 
     // create new user
-    const createUser = (email, password) => {
+    const userSignUp = (email, password) => {
+        setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
     // login user
     const signInUser = (email, password) => {
+        setLoading(true);
         return signInWithEmailAndPassword(auth, email, password)
+    }
+    // update profile
+    const updateUserData = (name, photoURL) => {
+        return updateProfile(auth.currentUser, {
+            displayName: name, photoURL: photoURL
+        })
     }
 
     // user signout
@@ -28,6 +36,7 @@ const AuthProvider = ({ children }) => {
 
     // signin with google
     const googleSignIn = () => {
+        setLoading(true);
         return signInWithPopup(auth, googleProvider);
     }
 
@@ -42,7 +51,8 @@ const AuthProvider = ({ children }) => {
                 axiosPublic.post('/jwt', userInfo)
                     .then(res => {
                         if (res.data.token) {
-                            localStorage.setItem('access-token', res.data.token)
+                            localStorage.setItem('access-token', res.data.token);
+                            setLoading(false);
                         }
                     });
             } else {
@@ -53,10 +63,11 @@ const AuthProvider = ({ children }) => {
     }, [axiosPublic]);
 
     const authInfo = {
-        createUser,
+        userSignUp,
         signInUser,
         googleSignIn,
         signOutUser,
+        updateUserData,
         user,
         loading
     }

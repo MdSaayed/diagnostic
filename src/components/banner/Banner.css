@@ -4,4 +4,5 @@ ul.thumbs.animated {
 
 .carousel.carousel-slider {
     height: 90vh;
+    object-fit: fill;
 }

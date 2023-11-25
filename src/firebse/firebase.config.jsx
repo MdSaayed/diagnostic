@@ -1,15 +1,20 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAaKlmpR7Yen6hhPpeyMVIjJKJ8adsC47U",
-  authDomain: "bistro-dca2d.firebaseapp.com",
-  projectId: "bistro-dca2d",
-  storageBucket: "bistro-dca2d.appspot.com",
-  messagingSenderId: "262171738170",
-  appId: "1:262171738170:web:5a358422fe7634cc84f503"
+  apiKey: "AIzaSyA3IjGKh8dY9BG1S4PWU1zzEeH_qcpwfSE",
+  authDomain: "assignment11-f53fd.firebaseapp.com",
+  projectId: "assignment11-f53fd",
+  storageBucket: "assignment11-f53fd.appspot.com",
+  messagingSenderId: "924154464340",
+  appId: "1:924154464340:web:82e97fa88f7409bd0505c1"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 export default auth;

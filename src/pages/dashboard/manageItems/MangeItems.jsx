@@ -1,8 +1,35 @@
 
+import Swal from 'sweetalert2';
+import useAxiosSecure from '../../../components/hooks/useAxiosSecure';
 import useMenu from './../../../components/hooks/useMenu';
 import MangeItem from './MangeItem';
 const MangeItems = () => {
-    const [menu] = useMenu();
+    const [menu, , refetch] = useMenu();
+    const axiosSecuire = useAxiosSecure();
+
+    // delete menu item
+    const handleDeleteMenu = (_id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                const res = await axiosSecuire.delete(`/menu/${_id}`);
+                refetch();
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your item has been deleted.",
+                    icon: "success"
+                });
+            }
+        });
+
+    }
     return (
         <div className='overflow-y-auto'>
             <table className="min-w-full border border-white">
@@ -16,7 +43,7 @@ const MangeItems = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {menu?.map((item) => <MangeItem key={item?._id} item={item} />)}
+                    {menu?.map((item) => <MangeItem key={item?._id} item={item} handleDeleteMenu={handleDeleteMenu} />)}
                 </tbody>
             </table>
         </div>
