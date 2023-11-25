@@ -50,6 +50,7 @@ const SignUp = () => {
             const imageUrl = res.data.data.url;
             setAvatar(imageUrl);
             const userInfo = {
+                name,
                 email,
                 district,
                 upazila,

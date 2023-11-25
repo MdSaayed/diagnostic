@@ -48,7 +48,17 @@ const AllUsers = () => {
             })
             .catch(err => console.log(err))
     }
+    // handle status
+    const handleStatus = (_id) => {
+        axiosSecuire.patch(`/users/status/${_id}`)
+            .then(res => {
+                toast.success('User status has been changed.');
+                refetch();
+            })
+            .catch(err => console.log(err))
+    }
 
+  
     return (
         <div>
             <div>
@@ -58,15 +68,17 @@ const AllUsers = () => {
             <div>
                 <table className="min-w-full border border-white">
                     <thead>
-                        <tr className="bg-orange-600 text-left text-white">
+                        <tr className="bg-black text-left text-white">
                             <th className="py-2 px-4 font-semibold">Name</th>
                             <th className="py-2 px-4 font-semibold">Email</th>
                             <th className="py-2 px-4 font-semibold">Role</th>
+                            <th className="py-2 px-4 font-semibold">Status</th>
+                            <th className="py-2 px-4 font-semibold">Details</th>
                             <th className="py-2 px-4 font-semibold">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {users?.map((user) => <UserTable key={user?._id} user={user} handleDeleteUser={handleDeleteUser} handleMakeAdmin={handleMakeAdmin} />)}
+                        {users?.map((user) => <UserTable key={user?._id} user={user} handleDeleteUser={handleDeleteUser} handleMakeAdmin={handleMakeAdmin} handleStatus={handleStatus} />)}
                     </tbody>
                 </table>
             </div>

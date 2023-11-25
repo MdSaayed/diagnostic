@@ -1,32 +1,78 @@
-import { BiLogoFacebookCircle } from 'react-icons/bi';
-import { BsInstagram } from 'react-icons/bs';
-import { AiFillTwitterCircle } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
+import { FaFacebookF } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
+import { FaLinkedinIn } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
+import { Link } from "react-router-dom";
+
+
+
+
 
 
 const Footer = () => {
     return (
-        <div>
-            <div className="grid grid-cols-1 md:grid-cols-2">
-                <div className='flex flex-col gap-4 items-start pl-16 md:pl-0 md:items-end bg-[#1F2937] text-white py-16 pr-16'>
-                    <h2 className="text-2xl font-semibold">CONTACT US</h2>
-                    <p>123 ABS Street, Uni 21, Bangladesh</p>
-                    <p>+88 1750848833</p>
-                    <p>Mon - Fri: 08:00 - 22:00</p>
-                    <p>Sat - Sun: 10:00 - 23:00</p>
-                </div>
-                <div className='flex flex-col gap-4 bg-[#111827] text-white py-16 pl-16'>
-                    <h2 className="text-2xl font-semibold">Follow US</h2>
-                    <p>Join us on social media</p>
-                    <div className='flex gap-4'>
-                        <Link><BiLogoFacebookCircle /></Link>
-                        <Link><BsInstagram /></Link>
-                        <Link><AiFillTwitterCircle /></Link>
+        <div className="bg-gradient-to-l from-[#01b5c511]">
+            <div className='max-w-6xl mx-auto'>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 py-8">
+                    <div className='space-y-3'>
+                        <h2 className="font-bold text-2xl ">Cure Vista</h2>
+                        <p>Copyright ©2022 UIHUT all rights reserved.</p>
+                        <div className='flex gap-4'>
+                            <button className='hover:bg-[#0067FF] hover:text-white border  text-black p-2 text-[10px] rounded-full'><FaFacebookF /></button>
+                            <button className='hover:bg-[#0067FF] hover:text-white border  text-black p-2 text-[10px] rounded-full'><FaTwitter /></button>
+                            <button className='hover:bg-[#0067FF] hover:text-white border  text-black p-2 text-[10px] rounded-full'><FaLinkedinIn /></button>
+                            <button className='hover:bg-[#0067FF] hover:text-white border  text-black p-2 text-[10px] rounded-full'><FaInstagram /></button>
+                        </div>
+                    </div>
+                    <div className="flex justify-between gap-2">
+                        <div>
+                            <h2 className="font-medium text-xl">About</h2>
+                            <div className="flex flex-col gap-3 mt-4">
+                                <Link>About us</Link>
+                                <Link>Virtual visit</Link>
+                                <Link>Petients portal</Link>
+                                <Link>Quality & Patient Safety</Link>
+                                <Link>Career opportunities</Link>
+                                <Link>Location</Link>
+                                <Link>Education & Training</Link>
+                            </div>
+                        </div>
+                        <div>
+                            <h2 className="font-medium text-xl">I want to:</h2>
+                            <div className="flex flex-col gap-3 mt-4">
+                                <Link>Request an Appointment</Link>
+                                <Link>Find a Doctor</Link>
+                                <Link>Get a Opinion</Link>
+                                <Link>Learn Condition</Link>
+                                <Link>Make a Referral</Link>
+                                <Link>Find a Location</Link>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="flex justify-between gap-3">
+                        <div>
+                            <h2 className="font-medium text-xl">Public Relations</h2>
+                            <div className="flex flex-col gap-4 mt-4">
+                                <Link>Blog</Link>
+                                <Link>Patient Rights</Link>
+                                <Link>Relation</Link>
+                                <Link>Terms of use</Link>
+                            </div>
+                        </div>
+                        <div>
+                            <h2 className="font-medium text-xl">Support</h2>
+                            <div className="flex flex-col gap-3 mt-4">
+                                <Link>Donate</Link>
+                                <Link>Contact us</Link>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className='bg-[#151515] py-2 text-white text-center'>
-                <p>Copyright © CulinaryCloud. All rights reserved.</p>
+                <div className='flex items-center justify-center gap-6 py-4 border-t text-center'>
+                    <p className="font-bold">Download Our App on:</p>
+                    <img src="https://i.ibb.co/WpxmRc0/App-Store-outline-badge.png" alt="" />
+                    <img src="https://i.ibb.co/hfRCWJK/Google-Play-outline-badge.png" alt="" />
+                </div>
             </div>
         </div>
     );
