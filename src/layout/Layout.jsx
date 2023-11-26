@@ -2,7 +2,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import Footer from "../footer/Footer";
 import Header from "../components/header/Header";
 import { ToastContainer, toast } from 'react-toastify';
-  import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Layout = () => {

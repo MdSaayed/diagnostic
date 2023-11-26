@@ -9,7 +9,7 @@ const Facilities = () => {
             <SectionHeading heading={`Find health facilities<br/> that serve COVID-19.`} textStyle={`center`} />
             <div>
                 <div className='flex items-center justify-center mt-8'>
-                    <input className='border rounded-full w-[24rem]  p-1' type="text" placeholder='Can we help you find something?' />
+                    <input className='border rounded-full w-[24rem] px-4  py-1' type="text" placeholder='Can we help you find something?' />
                     <button className='bg-[#0067FF] text-white p-2 rounded-full -ml-8'><CiSearch /></button>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 justify-center items-center gap-4 pt-12">

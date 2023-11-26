@@ -12,11 +12,11 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 const Faq = () => {
     return (
         <div className='max-w-6xl mx-auto py-16'>
-            <div className="grid grid-cols-1 md:grid-cols-2">
-                <div>
+            <div className="grid grid-cols-1 md:grid-cols-2 items-center">
+                <div className='flex justify-center'>
                     <img className="h-3/4" src="https://i.ibb.co/CMh1Mzr/Images.png" alt="" />
                 </div>
-                <div className="md:pl-8">
+                <div className="pt-16 md:pt-0 md:pl-8">
                     <SectionHeading heading={`Most questions by our<br/> beloved patients`} />
                     <Accordion className="mt-8">
                         <AccordionItem className="mb-4">

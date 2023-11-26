@@ -14,7 +14,7 @@ const Services = () => {
                         <h2 className="text-2xl font-bold mt-4 mb-2">Find a Doctor</h2>
                         <p>World-class care for everyone. Our health System offers unmatched, expert health care. From the lab to the clinic.</p>
                         <div className=" flex flex-col items-center py-2">
-                            <IoIosArrowRoundForward className="text-3xl w-6 h-6 rounded-full hover:text-white hover:bg-[#0067FF]" />
+                            <IoIosArrowRoundForward className="text-3xl w-6 h-6 rounded-full hover:text-white hover:bg-[#0067FF] border" />
                         </div>
                     </div>
                 </div>
@@ -24,7 +24,7 @@ const Services = () => {
                         <h2 className="text-2xl font-bold mt-4 mb-2">Find a Location</h2>
                         <p>World-class care for everyone. Our health System offers unmatched, expert health care. From the lab to the clinic.</p>
                         <div className=" flex flex-col items-center py-2">
-                            <IoIosArrowRoundForward className="text-3xl w-6 h-6 rounded-full hover:text-white hover:bg-[#0067FF]" />
+                            <IoIosArrowRoundForward className="text-3xl w-6 h-6 rounded-full hover:text-white hover:bg-[#0067FF] border" />
                         </div>
                     </div>
                 </div>
@@ -34,7 +34,7 @@ const Services = () => {
                         <h2 className="text-2xl font-bold mt-4 mb-2">Book Appointment</h2>
                         <p>World-class care for everyone. Our health System offers unmatched, expert health care. From the lab to the clinic.</p>
                         <div className=" flex flex-col items-center py-2">
-                            <IoIosArrowRoundForward className="text-3xl w-6 h-6 rounded-full hover:text-white hover:bg-[#0067FF]" />
+                            <IoIosArrowRoundForward className="text-3xl w-6 h-6 rounded-full hover:text-white hover:bg-[#0067FF] border" />
                         </div>
                     </div>
                 </div>

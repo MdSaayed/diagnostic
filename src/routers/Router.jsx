@@ -14,6 +14,8 @@ import AddItems from "../pages/dashboard/addItems/AddItems";
 import MangeItems from "../pages/dashboard/manageItems/MangeItems";
 import UpdateItem from "../pages/dashboard/updateItem/UpdateItem";
 import Payment from "../pages/dashboard/payment/Payment";
+import Appointment from "../pages/appointment/Appointment ";
+import UpcomingAppointments from "../pages/dashboard/upcomingAppointments/UpcomingAppointments";
 
 const router = createBrowserRouter([
     {
@@ -33,6 +35,10 @@ const router = createBrowserRouter([
                 element: <Order />
             },
             {
+                path: '/appointment',
+                element: <Appointment />
+            },
+            {
                 path: '/signin',
                 element: <Signin />
             },
@@ -49,6 +55,10 @@ const router = createBrowserRouter([
             {
                 path: 'cart',
                 element: <Cart />
+            },
+            {
+                path: 'upcomingAppointments',
+                element: <UpcomingAppointments />
             },
             {
                 path: 'payment',

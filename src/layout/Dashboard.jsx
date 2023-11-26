@@ -26,6 +26,7 @@ const Dashboard = () => {
                         </> : <>
                             <li className="flex items-center gap-2"><BsCartFill /><NavLink to='/dashboard/cart'>Cart</NavLink></li>
                             <li className="flex items-center gap-2"><IoMdHome /><NavLink to='/dashboard/cart'>User Home</NavLink></li>
+                            <li className="flex items-center gap-2"><IoMdHome /><NavLink to='/dashboard/upcomingAppointments'>Upcoming appointments</NavLink></li>
                             <li className="flex items-center gap-2"><FaCalendarDays /><NavLink to='/dashboard/cart'>Reservation</NavLink></li>
                             <li className="flex items-center gap-2"><MdOutlinePayment /><NavLink to='/dashboard/cart'>Payment Histroy</NavLink></li>
                             <li className="flex items-center gap-2"><MdOutlineReviews /><NavLink to='/dashboard/cart'>Add review</NavLink></li>
