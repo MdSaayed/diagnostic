@@ -1,6 +1,6 @@
 
-import SectionHeading from './../sectionTitle/SectionHeading';
 import { FaStar } from "react-icons/fa";
+import SectionHeading from "../sectionHeading/SectionHeading";
 
 
 const Review = () => {

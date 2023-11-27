@@ -5,10 +5,12 @@ import "react-time-picker/dist/TimePicker.css";
 import { toast } from "react-toastify";
 import useAxiosSecure from "../../../components/hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
+import useTest from "../../../components/hooks/useTest";
 
 const Appointment = () => {
-    const testName = ["Please select", "Complete Blood Count (CBC)", "Lipid Profile", "Thyroid Function Test", "Liver Function Test", "Renal Function Test", "Blood Glucose Test", "Hemoglobin A1c", "Urinalysis", "Electrocardiogram (ECG)", "X-ray Imaging", "MRI Scan", "CT Scan", "Allergy Testing", "HIV/AIDS Test", "Cancer Marker Tests", "Genetic Testing", "Bone Density Test", "Pap Smear", "Prostate-Specific Antigen (PSA) Test", "Pregnancy Test", "Hepatitis Panel", "Coagulation Panel", "Thyroid Antibody Tests", "Cholesterol Panel"];
+    // const testName = ["Please select", "Complete Blood Count (CBC)", "Lipid Profile", "Thyroid Function Test", "Liver Function Test", "Renal Function Test", "Blood Glucose Test", "Hemoglobin A1c", "Urinalysis", "Electrocardiogram (ECG)", "X-ray Imaging", "MRI Scan", "CT Scan", "Allergy Testing", "HIV/AIDS Test", "Cancer Marker Tests", "Genetic Testing", "Bone Density Test", "Pap Smear", "Prostate-Specific Antigen (PSA) Test", "Pregnancy Test", "Hepatitis Panel", "Coagulation Panel", "Thyroid Antibody Tests", "Cholesterol Panel"];
     const { user } = useAuth();
+    const [tests] = useTest();
     const [selectedDate, setSelectedDate] = useState(null);
     const [selectedTime, setSelectedTime] = useState(null);
     const axiosSecuire = useAxiosSecure();
@@ -39,6 +41,7 @@ const Appointment = () => {
         }
     };
 
+
     return (
         <div className="">
             <div className="max-w-6xl mx-auto py-16">
@@ -58,9 +61,9 @@ const Appointment = () => {
                         </div>
                         <div className="mb-2">
                             <label className="font-bold" htmlFor="selectOption">Select a test:</label><br />
-                            <select className="py-1 px-4 border focus:outline-none rounded-sm w-full" id="selectOption" name="testName" >{testName.map((option, index) => (
-                                <option key={index} value={option}>
-                                    {option}
+                            <select className="py-1 px-4 border focus:outline-none rounded-sm w-full" id="selectOption" name="testName" >{tests?.map((test, index) => (
+                                <option key={index} value={test.testName}>
+                                    {test.testName}
                                 </option>
                             ))}
                             </select>

@@ -1,5 +1,6 @@
-import SectionHeading from "../sectionTitle/SectionHeading";
-import { IoIosArrowRoundForward } from "react-icons/io";
+
+import { IoIosArrowRoundForward } from 'react-icons/io';
+import SectionHeading from '../sectionHeading/SectionHeading';
 
 
 

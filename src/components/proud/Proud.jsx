@@ -1,4 +1,4 @@
-import SectionHeading from "../sectionTitle/SectionHeading";
+import SectionHeading from "../sectionHeading/SectionHeading";
 
 
 const Proud = () => {

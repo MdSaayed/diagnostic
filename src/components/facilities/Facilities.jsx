@@ -1,6 +1,6 @@
 import React from 'react';
-import SectionHeading from '../sectionTitle/SectionHeading';
 import { CiSearch } from "react-icons/ci";
+import SectionHeading from '../sectionHeading/SectionHeading';
 
 
 const Facilities = () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { GiRoundStar } from 'react-icons/gi';
 import { IoIosArrowRoundForward } from 'react-icons/io';
-import SectionHeading from '../sectionTitle/SectionHeading';
+import SectionHeading from '../sectionHeading/SectionHeading';
 
 const FeaturedStories = () => {
     return (

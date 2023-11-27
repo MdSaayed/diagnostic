@@ -1,5 +1,4 @@
 import React from 'react';
-import SectionHeading from "../sectionTitle/SectionHeading";
 import {
     Accordion,
     AccordionItem,
@@ -8,6 +7,7 @@ import {
     AccordionItemPanel,
 } from 'react-accessible-accordion';
 import { MdKeyboardArrowDown } from "react-icons/md";
+import SectionHeading from '../sectionHeading/SectionHeading';
 
 const Faq = () => {
     return (

@@ -1,24 +1,23 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "../layout/Layout";
-import OurMenu from "../pages/OurMenu";
 import Home from "../pages/Home";
-import Order from "../pages/Order";
 import Signin from "../pages/Signin";
 import SignUp from "../pages/SignUp";
 import Dashboard from "../layout/Dashboard";
-import Cart from "../pages/dashboard/Cart";
 import Private from "./Private";
 import AllUsers from "../pages/dashboard/allUsers/AllUsers";
 import AdminRoute from "./AdminRoute";
-import AddItems from "../pages/dashboard/addItems/AddItems";
-import MangeItems from "../pages/dashboard/manageItems/MangeItems";
-import UpdateItem from "../pages/dashboard/updateItem/UpdateItem";
-import Payment from "../pages/dashboard/payment/Payment";
 import UpcomingAppointments from "../pages/dashboard/upcomingAppointments/UpcomingAppointments";
 import AllAppointment from "../pages/dashboard/allAppointment/AllAppointment";
 import Appointment from "../pages/dashboard/appointment/Appointment ";
 import Profile from "../pages/dashboard/profile/Profile";
 import UpdateProfile from "../pages/dashboard/updateProfile/UpdateProfile";
+import TestResult from "../pages/dashboard/testResult/TestResult";
+import AddTest from "../pages/dashboard/addTest/AddTest";
+import AllTest from "../pages/AllTest";
+import TestDetails from "../pages/dashboard/TestDetails";
+import AllTestTable from "../pages/dashboard/allTextTable'/AllTestTable";
+import UpdateTest from "../pages/dashboard/updateTest/UpdateTest";
 
 const router = createBrowserRouter([
     {
@@ -30,16 +29,17 @@ const router = createBrowserRouter([
                 element: <Home />
             },
             {
-                path: 'menu',
-                element: <OurMenu />
-            },
-            {
-                path: '/order/:category',
-                element: <Order />
-            },
-            {
                 path: '/appointment',
                 element: <Appointment />
+            },
+            {
+                path: 'allTest',
+                element: <AllTest />
+            },
+            {
+                path: '/tests/details/:id',
+                element: <TestDetails />,
+                loader: ({ params }) => fetch(`http://localhost:5000/tests/${params.id}`)
             },
             {
                 path: '/signin',
@@ -56,20 +56,12 @@ const router = createBrowserRouter([
         element: <Private><Dashboard /></Private>,
         children: [
             {
-                path: 'cart',
-                element: <Cart />
-            },
-            {
                 path: 'upcomingAppointments',
                 element: <UpcomingAppointments />
             },
             {
                 path: 'allAppointment',
                 element: <AllAppointment />
-            },
-            {
-                path: 'payment',
-                element: <Payment />
             },
             {
                 path: 'users',
@@ -84,17 +76,21 @@ const router = createBrowserRouter([
                 element: <UpdateProfile />
             },
             {
-                path: 'additems',
-                element: <AdminRoute><AddItems /></AdminRoute>
+                path: 'testResult',
+                element: <TestResult />
             },
             {
-                path: 'manageItems',
-                element: <MangeItems />
+                path: 'allTestTable',
+                element: <AllTestTable />
             },
             {
-                path: 'updateItem/:id',
-                element: <AdminRoute><UpdateItem /></AdminRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/menu/${params.id}`)
+                path: 'test/update/:id',
+                element: <UpdateTest />,
+                loader: ({ params }) => fetch(`http://localhost:5000/tests/${params.id}`)
+            },
+            {
+                path: 'addTest',
+                element: <AddTest />
             }
         ]
     }

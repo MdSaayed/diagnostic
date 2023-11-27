@@ -1,6 +1,7 @@
-import { IoIosArrowRoundForward } from "react-icons/io";
-import SectionHeading from "../sectionTitle/SectionHeading";
 import { GiRoundStar } from "react-icons/gi";
+import SectionHeading from "../sectionHeading/SectionHeading";
+import { IoIosArrowRoundForward } from "react-icons/io";
+
 
 
 const Doctors = () => {
