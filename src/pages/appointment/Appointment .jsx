@@ -1,24 +1,42 @@
 import { useState } from "react";
 import DatePicker from "react-datepicker";
-import TimePicker from "react-time-picker";
 import "react-datepicker/dist/react-datepicker.css";
 import "react-time-picker/dist/TimePicker.css";
+import useAxiosSecure from './../../components/hooks/useAxiosSecure';
+import { toast } from "react-toastify";
+import useAuth from "../../hooks/useAuth";
 
 const Appointment = () => {
-    const testName = ["Please select", "Blood Checkup", "Diabetology", "Endocrinology", "Vaccination Center", "Interventional Cardiology", "Pulmonology", "Gastro Entorology", "Nephrology", "Psychiatry", "Obstetrics & Gynaecology", "Urology", "Physiotherapy", "Premarital Counseling"];
-
+    const testName = ["Please select", "Complete Blood Count (CBC)", "Lipid Profile", "Thyroid Function Test", "Liver Function Test", "Renal Function Test", "Blood Glucose Test", "Hemoglobin A1c", "Urinalysis", "Electrocardiogram (ECG)", "X-ray Imaging", "MRI Scan", "CT Scan", "Allergy Testing", "HIV/AIDS Test", "Cancer Marker Tests", "Genetic Testing", "Bone Density Test", "Pap Smear", "Prostate-Specific Antigen (PSA) Test", "Pregnancy Test", "Hepatitis Panel", "Coagulation Panel", "Thyroid Antibody Tests", "Cholesterol Panel"];
+    const { user } = useAuth();
     const [selectedDate, setSelectedDate] = useState(null);
-    const [selectedTime, setSelectedTime] = useState("12:00");
+    const [selectedTime, setSelectedTime] = useState(null);
+    const axiosSecuire = useAxiosSecure();
+    console.log(selectedTime);
 
-    const handleBooking = (e) => {
+    const handleBooking = async (e) => {
         e.preventDefault();
         const form = e.target;
         const name = form.name.value;
         const email = form.email.value;
+        const testName = form.testName.value;
         const mobile = form.mobile.value;
-        const selectedTest = form.testName.value;
         const message = form.message.value;
-        console.log(name, email, mobile, selectedTest, selectedDate, selectedTime, message);
+
+        const bookingInfo = {
+            name,
+            email,
+            mobile,
+            date: selectedDate,
+            time: selectedTime,
+            testName,
+            status: 'pending',
+            message
+        }
+        const res = await axiosSecuire.post('/bookings', bookingInfo);
+        if (res) {
+            toast.success('Appointment booking successfully.');
+        }
     };
 
     return (
@@ -28,11 +46,11 @@ const Appointment = () => {
                     <form onSubmit={handleBooking} className="w-[400px]" action="">
                         <div className="mb-2">
                             <label className="font-bold" htmlFor="name">Name*</label> <br />
-                            <input className="py-1 px-4 border focus:outline-none rounded-sm w-full" type="text" name="name" />
+                            <input className="py-1 px-4 border focus:outline-none rounded-sm w-full" defaultValue={user?.displayName} type="text" name="name" />
                         </div>
                         <div className="mb-2">
                             <label className="font-bold" htmlFor="email">Email*</label><br />
-                            <input className="py-1 px-4 border focus:outline-none rounded-sm w-full" type="text" name="email" />
+                            <input className="py-1 px-4 border focus:outline-none rounded-sm w-full" readOnly defaultValue={user?.email} type="text" name="email" />
                         </div>
                         <div className="mb-2">
                             <label className="font-bold" htmlFor="email">Mobile*</label><br />

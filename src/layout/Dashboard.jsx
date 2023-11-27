@@ -23,6 +23,7 @@ const Dashboard = () => {
                             <li className="flex items-center gap-2"><FaList /><NavLink to='/dashboard/manageItems'>Manage Items</NavLink></li>
                             <li className="flex items-center gap-2"><FaBook /><NavLink to='/dashboard/bookings'>Manage Booking</NavLink></li>
                             <li className="flex items-center gap-2"><FaUser /><NavLink to='/dashboard/users'>All Users</NavLink></li>
+                            <li className="flex items-center gap-2"><TbBrandBooking /><NavLink to='/dashboard/allAppointment'>My Booking</NavLink></li>
                         </> : <>
                             <li className="flex items-center gap-2"><BsCartFill /><NavLink to='/dashboard/cart'>Cart</NavLink></li>
                             <li className="flex items-center gap-2"><IoMdHome /><NavLink to='/dashboard/cart'>User Home</NavLink></li>
@@ -30,7 +31,7 @@ const Dashboard = () => {
                             <li className="flex items-center gap-2"><FaCalendarDays /><NavLink to='/dashboard/cart'>Reservation</NavLink></li>
                             <li className="flex items-center gap-2"><MdOutlinePayment /><NavLink to='/dashboard/cart'>Payment Histroy</NavLink></li>
                             <li className="flex items-center gap-2"><MdOutlineReviews /><NavLink to='/dashboard/cart'>Add review</NavLink></li>
-                            <li className="flex items-center gap-2"><TbBrandBooking /><NavLink to='/dashboard/cart'>My Booking</NavLink></li>
+                            <li className="flex items-center gap-2"><TbBrandBooking /><NavLink to='/dashboard/upcomingAppointments'>My Appointments</NavLink></li>
                         </>
                     }
                 </ul>

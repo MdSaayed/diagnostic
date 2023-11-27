@@ -61,6 +61,10 @@ const router = createBrowserRouter([
                 element: <UpcomingAppointments />
             },
             {
+                path: 'allAppointment',
+                element: <UpcomingAppointments />
+            },
+            {
                 path: 'payment',
                 element: <Payment />
             },
