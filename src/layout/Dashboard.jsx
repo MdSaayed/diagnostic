@@ -1,12 +1,15 @@
+import React from 'react';
 import { NavLink, Outlet } from "react-router-dom";
-import { BsCartFill } from "react-icons/bs";
 import { IoMdHome } from "react-icons/io";
 import { FaCalendarDays } from "react-icons/fa6";
 import { MdOutlinePayment } from "react-icons/md";
-import { MdOutlineReviews } from "react-icons/md";
 import { TbBrandBooking } from "react-icons/tb";
-import { FaAd, FaBook, FaList, FaUser, FaUtensils } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 import useAdmin from "../components/hooks/useAdmin";
+import { CgProfile } from "react-icons/cg";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 const Dashboard = () => {
@@ -18,26 +21,24 @@ const Dashboard = () => {
                 <ul className="text-white font-medium text-xl flex flex-col gap-3">
                     {
                         isAdmin ? <>
-                            <li className="flex items-center gap-2"><IoMdHome /><NavLink to='/dashboard/adminHome'>Admin Home</NavLink></li>
-                            <li className="flex items-center gap-2"><FaUtensils /><NavLink to='/dashboard/additems'>Add Items</NavLink></li>
-                            <li className="flex items-center gap-2"><FaList /><NavLink to='/dashboard/manageItems'>Manage Items</NavLink></li>
-                            <li className="flex items-center gap-2"><FaBook /><NavLink to='/dashboard/bookings'>Manage Booking</NavLink></li>
+                            <li className="flex items-center gap-2"><IoMdHome /><NavLink to='/dashboard/adminHome' className='text-[1rem] leading-5'>Admin Home</NavLink></li>
                             <li className="flex items-center gap-2"><FaUser /><NavLink to='/dashboard/users'>All Users</NavLink></li>
-                            <li className="flex items-center gap-2"><TbBrandBooking /><NavLink to='/dashboard/allAppointment'>All Appointment</NavLink></li>
+                            <li className="flex items-center gap-2"><TbBrandBooking /><NavLink to='/dashboard/allAppointment' className='text-[1rem] leading-5'>All Appointment</NavLink></li>
                         </> : <>
-                            <li className="flex items-center gap-2"><BsCartFill /><NavLink to='/dashboard/cart'>Cart</NavLink></li>
-                            <li className="flex items-center gap-2"><IoMdHome /><NavLink to='/dashboard/cart'>User Home</NavLink></li>
-                            <li className="flex items-center gap-2"><IoMdHome /><NavLink to='/dashboard/upcomingAppointments'>Upcoming appointments</NavLink></li>
-                            <li className="flex items-center gap-2"><FaCalendarDays /><NavLink to='/dashboard/cart'>Reservation</NavLink></li>
-                            <li className="flex items-center gap-2"><MdOutlinePayment /><NavLink to='/dashboard/cart'>Payment Histroy</NavLink></li>
-                            <li className="flex items-center gap-2"><MdOutlineReviews /><NavLink to='/dashboard/cart'>Add review</NavLink></li>
-                            <li className="flex items-center gap-2"><TbBrandBooking /><NavLink to='/dashboard/upcomingAppointments'>My Appointments</NavLink></li>
+                            <li className="flex items-center gap-2"><IoMdHome /><NavLink to='/dashboard/cart' className='text-[1rem] leading-5'>User Home</NavLink></li>
+                            <li className="flex items-center gap-2"><FaCalendarDays /><NavLink to='/dashboard/upcomingAppointments' className='text-[1rem] leading-5'>Upcoming appointments</NavLink></li>
+                            <li className="flex items-center gap-2"><MdOutlinePayment /><NavLink to='/dashboard/cart' className='text-[1rem] leading-5'>Payment Histroy</NavLink></li>
+                            <li className="flex items-center gap-2"><CgProfile /><NavLink to='/dashboard/profile' className='text-[1rem] leading-5'>Profile</NavLink></li>
                         </>
                     }
                 </ul>
             </div>
-            <div className="w-full p-4">
-                <Outlet />
+            <div className="w-full">
+                <div className="py-2 bg-black"></div>
+                <div className="w-full p-4">
+                    <Outlet />
+                    <ToastContainer />
+                </div>
             </div>
         </div>
     );

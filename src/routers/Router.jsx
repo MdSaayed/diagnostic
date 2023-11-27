@@ -14,9 +14,11 @@ import AddItems from "../pages/dashboard/addItems/AddItems";
 import MangeItems from "../pages/dashboard/manageItems/MangeItems";
 import UpdateItem from "../pages/dashboard/updateItem/UpdateItem";
 import Payment from "../pages/dashboard/payment/Payment";
-import Appointment from "../pages/appointment/Appointment ";
 import UpcomingAppointments from "../pages/dashboard/upcomingAppointments/UpcomingAppointments";
 import AllAppointment from "../pages/dashboard/allAppointment/AllAppointment";
+import Appointment from "../pages/dashboard/appointment/Appointment ";
+import Profile from "../pages/dashboard/profile/Profile";
+import UpdateProfile from "../pages/dashboard/updateProfile/UpdateProfile";
 
 const router = createBrowserRouter([
     {
@@ -72,6 +74,14 @@ const router = createBrowserRouter([
             {
                 path: 'users',
                 element: <AdminRoute><AllUsers /></AdminRoute>
+            },
+            {
+                path: 'profile',
+                element: <Profile />
+            },
+            {
+                path: 'updateProfile',
+                element: <UpdateProfile />
             },
             {
                 path: 'additems',

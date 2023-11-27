@@ -2,9 +2,9 @@ import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "react-time-picker/dist/TimePicker.css";
-import useAxiosSecure from './../../components/hooks/useAxiosSecure';
 import { toast } from "react-toastify";
-import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../../components/hooks/useAxiosSecure";
+import useAuth from "../../../hooks/useAuth";
 
 const Appointment = () => {
     const testName = ["Please select", "Complete Blood Count (CBC)", "Lipid Profile", "Thyroid Function Test", "Liver Function Test", "Renal Function Test", "Blood Glucose Test", "Hemoglobin A1c", "Urinalysis", "Electrocardiogram (ECG)", "X-ray Imaging", "MRI Scan", "CT Scan", "Allergy Testing", "HIV/AIDS Test", "Cancer Marker Tests", "Genetic Testing", "Bone Density Test", "Pap Smear", "Prostate-Specific Antigen (PSA) Test", "Pregnancy Test", "Hepatitis Panel", "Coagulation Panel", "Thyroid Antibody Tests", "Cholesterol Panel"];
@@ -53,7 +53,7 @@ const Appointment = () => {
                             <input className="py-1 px-4 border focus:outline-none rounded-sm w-full" readOnly defaultValue={user?.email} type="text" name="email" />
                         </div>
                         <div className="mb-2">
-                            <label className="font-bold" htmlFor="email">Mobile*</label><br />
+                            <label className="font-bold" htmlFor="mobile">Mobile*</label><br />
                             <input className="py-1 px-4 border focus:outline-none rounded-sm w-full" type="text" name="mobile" />
                         </div>
                         <div className="mb-2">
