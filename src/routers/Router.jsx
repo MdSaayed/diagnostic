@@ -16,6 +16,7 @@ import UpdateItem from "../pages/dashboard/updateItem/UpdateItem";
 import Payment from "../pages/dashboard/payment/Payment";
 import Appointment from "../pages/appointment/Appointment ";
 import UpcomingAppointments from "../pages/dashboard/upcomingAppointments/UpcomingAppointments";
+import AllAppointment from "../pages/dashboard/allAppointment/AllAppointment";
 
 const router = createBrowserRouter([
     {
@@ -62,7 +63,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'allAppointment',
-                element: <UpcomingAppointments />
+                element: <AllAppointment />
             },
             {
                 path: 'payment',

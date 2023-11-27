@@ -3,19 +3,10 @@ import useUpcomingAppointents from '../../../components/hooks/useUpcomingAppoint
 import { format } from 'date-fns';
 import useAxiosSecure from '../../../components/hooks/useAxiosSecure';
 import { toast } from 'react-toastify';
-import { useQuery } from '@tanstack/react-query';
-import useAuth from '../../../hooks/useAuth';
 
-const UpcomingAppointments = () => {
+const AllAppointment = () => {
     const axiosSecuire = useAxiosSecure();
-    const { user } = useAuth();
-    const { data: upcomingAppointments = [], isPending: loading, refetch } = useQuery({
-        queryKey: ['upcomingAppointments'],
-        queryFn: async () => {
-            const res = await axiosSecuire.get(`/bookings/${user?.email}`);
-            return res.data
-        }
-    })
+    const [upcomingAppointments, loading, refetch] = useUpcomingAppointents();
 
     const formatDate = (dateString) => {
         const parsedDate = new Date(dateString);
@@ -68,4 +59,4 @@ const UpcomingAppointments = () => {
     );
 };
 
-export default UpcomingAppointments;
+export default AllAppointment;
