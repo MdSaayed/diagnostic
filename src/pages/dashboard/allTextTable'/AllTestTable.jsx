@@ -52,7 +52,7 @@ const AllTestTable = () => {
                             <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : ''}>
                                 <td className="border border-gray-300 px-4 py-2 text-center"><img className='w-[100px]' src={test?.image} alt="" /></td>
                                 <td className="border border-gray-300 px-4 py-2 text-center">{test?.testName}</td>
-                                <td className="border border-gray-300 px-4 py-2 text-center">{test?.price}</td>
+                                <td className="border border-gray-300 px-4 py-2 text-center">${test?.price}</td>
                                 <td className="border border-gray-300 px-4 py-2 text-center">{formatDate(test?.date)}</td>
                                 <td className="border border-gray-300 px-4 py-2 text-center">{test?.slot}</td>
                                 <td className="border border-gray-300 px-4 py-2 text-center">{test?.details?.length > 15 ? test?.details.slice(0, 15) + '...' : test.details}</td>

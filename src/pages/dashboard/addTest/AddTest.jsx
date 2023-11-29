@@ -7,8 +7,8 @@ import { useState } from "react";
 const AddTest = () => {
     const axiosSecuire = useAxiosSecure();
     const [date, setDate] = useState(null);
-    const [slots, setSlots] = useState(null);
-    console.log(date,slots);
+    const [time, setTime] = useState(null);
+    console.log(date, time);
 
     const handleAddTest = async (e) => {
         e.preventDefault();
@@ -17,15 +17,16 @@ const AddTest = () => {
         const image = form.image.value;
         const price = form.price.value;
         const details = form.details.value;
+        const slots = form.slots.value;
 
-        const newTest = { testName, image, price, date, slots, details }
+        const newTest = { testName, image, price, date, time, slots, details }
 
         const res = await axiosSecuire.post('/tests', newTest);
         if (res) {
             toast.success('Successfull added your test.');
         }
     }
-    
+
 
 
     return (
@@ -39,19 +40,25 @@ const AddTest = () => {
                     </div>
                     <div className="mb-2">
                         <label className="font-bold" htmlFor="image">Image Url</label><br />
-                        <input className="py-1 px-4 border focus:outline-none rounded-sm w-full" type="text" name="image" />
+                        <input className="py-1 px-4 border focus:outline-none rounded-sm w-full" type="text" name="image" required />
                     </div>
                     <div className="mb-2">
                         <label className="font-bold" htmlFor="price">Price*</label><br />
-                        <input className="py-1 px-4 border focus:outline-none rounded-sm w-full" type="number" name="price" />
+                        <input className="py-1 px-4 border focus:outline-none rounded-sm w-full" type="number" name="price" required />
+                    </div>
+                    <div className="flex gap-4">
+                        <div className="mb-2 w-full">
+                            <label className="font-bold" htmlFor="mobile">Date*</label><br />
+                            <DatePicker selected={date} onChange={(date) => setDate(date)} className="py-1 px-4 border focus:outline-none rounded-sm w-full" required />
+                        </div>
+                        <div className="mb-2 w-full">
+                            <label className="font-bold" htmlFor="date">Time*</label><br />
+                            <input type="time" value={time} onChange={(e) => setTime(e.target.value)} className="py-[0.23rem] px-4 border focus:outline-none rounded-sm w-full" required />
+                        </div>
                     </div>
                     <div className="mb-2">
-                        <label className="font-bold" htmlFor="mobile">Date*</label><br />
-                        <DatePicker selected={date} onChange={(date) => setDate(date)} className="py-1 px-4 border focus:outline-none rounded-sm w-full" />
-                    </div>
-                    <div className="mb-2">
-                        <label className="font-bold" htmlFor="date">Slots*</label><br />
-                        <input type="time" value={slots} onChange={(e) => setSlots(e.target.value)} className="py-[0.23rem] px-4 border focus:outline-none rounded-sm w-full" />
+                        <label className="font-bold" htmlFor="slots">Slots*</label><br />
+                        <input className="py-1 px-4 border focus:outline-none rounded-sm w-full" type="number" name="slots" required />
                     </div>
                     <div className="mb-2">
                         <label className="font-bold" htmlFor="details">Details</label>

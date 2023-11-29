@@ -18,6 +18,8 @@ import AllTest from "../pages/AllTest";
 import TestDetails from "../pages/dashboard/TestDetails";
 import AllTestTable from "../pages/dashboard/allTextTable'/AllTestTable";
 import UpdateTest from "../pages/dashboard/updateTest/UpdateTest";
+import Payment from "../components/payement/Payment";
+import PaymentHistory from "../pages/dashboard/pymentHistory/PaymentHistory";
 
 const router = createBrowserRouter([
     {
@@ -91,6 +93,14 @@ const router = createBrowserRouter([
             {
                 path: 'addTest',
                 element: <AddTest />
+            },
+            {
+                path: 'payment',
+                element: <Payment />
+            },
+            {
+                path: 'paymentHistory',
+                element: <PaymentHistory />
             }
         ]
     }

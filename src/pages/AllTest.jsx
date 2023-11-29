@@ -4,7 +4,8 @@ import { SlCalender } from "react-icons/sl";
 import { format } from 'date-fns';
 import { Link } from "react-router-dom";
 import { RiArrowRightUpLine } from "react-icons/ri";
-
+import { FiDollarSign } from "react-icons/fi";
+import { IoIosPeople } from "react-icons/io";
 
 
 
@@ -26,8 +27,12 @@ const AllTest = () => {
                         <div className="py-2">
                             <h2 className="font-bold">{item.testName}</h2>
                             <div className="flex gap-4 mb-2">
-                                <div className="flex gap-2 items-center"><IoMdTime className="text-[13px]"></IoMdTime> <span className="text-[12px]">{item?.slot}</span></div>
+                                <div className="flex gap-2 items-center"><IoMdTime className="text-[13px]"></IoMdTime> <span className="text-[12px]">{item?.time}</span></div>
                                 <div className="flex gap-2 items-center"><SlCalender className="text-[10px]" /> <span className="text-[12px]">{formatDate(item?.date)}</span></div>
+                            </div>
+                            <div className="flex gap-4 mb-2">
+                                <div className="flex items-center">Price: <FiDollarSign className="text-[13px]"></FiDollarSign> <span className="text-[12px]">{item?.price}</span></div>
+                                <div className="flex gap-2 items-center">Available slots: <span className="text-[12px]">{item?.slot}</span></div>
                             </div>
                             <div>
                                 <Link to={`/tests/details/${item?._id}`}><span className="text-blue-600 flex text-[12px] items-center gap-3">Details<RiArrowRightUpLine /></span></Link>

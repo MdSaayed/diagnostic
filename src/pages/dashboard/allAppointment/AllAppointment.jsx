@@ -38,7 +38,7 @@ const AllAppointment = () => {
                             <th className="border border-gray-300 px-4 py-2">Test Name</th>
                             <th className="border border-gray-300 px-4 py-2">Mobile</th>
                             <th className="border border-gray-300 px-4 py-2">Date</th>
-                            <th className="border border-gray-300 px-4 py-2">Selected Time</th>
+                            <th className="border border-gray-300 px-4 py-2">Time</th>
                             <th className="border border-gray-300 px-4 py-2">Status</th>
                             <th className="border border-gray-300 px-4 py-2">Action</th>
                         </tr>

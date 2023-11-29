@@ -29,7 +29,7 @@ const Dashboard = () => {
                         </> : <>
                             <li className="flex items-center gap-2"><IoMdHome /><NavLink to='/dashboard/cart' className='text-[1rem] leading-5'>User Home</NavLink></li>
                             <li className="flex items-center gap-2"><FaCalendarDays /><NavLink to='/dashboard/upcomingAppointments' className='text-[1rem] leading-5'>Upcoming appointments</NavLink></li>
-                            <li className="flex items-center gap-2"><MdOutlinePayment /><NavLink to='/dashboard/cart' className='text-[1rem] leading-5'>Payment Histroy</NavLink></li>
+                            <li className="flex items-center gap-2"><MdOutlinePayment /><NavLink to='/dashboard/paymentHistory' className='text-[1rem] leading-5'>Payment Histroy</NavLink></li>
                             <li className="flex items-center gap-2"><CgProfile /><NavLink to='/dashboard/testResult' className='text-[1rem] leading-5'>Test Result</NavLink></li>
                             <li className="flex items-center gap-2"><CgProfile /><NavLink to='/dashboard/profile' className='text-[1rem] leading-5'>Profile</NavLink></li>
                         </>
