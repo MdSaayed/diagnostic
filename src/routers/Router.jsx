@@ -44,7 +44,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/tests/details/:id',
-                element: <TestDetails />,
+                element: <Private><TestDetails /></Private>,
                 loader: ({ params }) => fetch(`https://server-henna-phi.vercel.app/tests/${params.id}`)
             },
             {
@@ -63,7 +63,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: 'upcomingAppointments',
-                element: <UpcomingAppointments />
+                element: <Private><UpcomingAppointments /></Private>
             },
             {
                 path: 'allAppointment',
@@ -75,23 +75,23 @@ const router = createBrowserRouter([
             },
             {
                 path: 'profile',
-                element: <Profile />
+                element: <Private><Profile /></Private>
             },
             {
                 path: 'updateProfile',
-                element: <UpdateProfile />
+                element: <Private><UpdateProfile /></Private>
             },
             {
                 path: 'testResult',
-                element: <TestResult />
+                element: <Private><TestResult /></Private>
             },
             {
                 path: 'testReport',
-                element: <Repport />
+                element: <AdminRoute><Repport /></AdminRoute>
             },
             {
                 path: 'seeReport/:id',
-                element: <SeeReport />,
+                element: <Private><SeeReport /></Private>,
                 loader: ({ params }) => fetch(`http://localhost:5000/seeReport/${params.id}`)
             },
             {
@@ -100,12 +100,12 @@ const router = createBrowserRouter([
             },
             {
                 path: 'test/update/:id',
-                element: <UpdateTest />,
+                element: <AdminRoute><UpdateTest /></AdminRoute>,
                 loader: ({ params }) => fetch(`https://server-henna-phi.vercel.app/tests/${params.id}`)
             },
             {
                 path: 'addTest',
-                element: <AddTest />
+                element: <AdminRoute><AddTest /></AdminRoute>
             },
             {
                 path: 'payment',
@@ -113,7 +113,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'paymentHistory',
-                element: <PaymentHistory />
+                element: <Private><PaymentHistory /></Private>
             }
         ]
     }

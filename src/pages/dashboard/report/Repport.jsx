@@ -56,6 +56,15 @@ const Repport = () => {
     };
 
 
+    // handleCancel
+    const handleCancel = (id) => {
+        const res = axiosSecuire.patch(`/testsCancel/${id}`);
+        if (res) {
+            toast.success('Reservation is canceled.');
+        }
+    }
+
+
 
     return (
         <div className="overflow-x-auto">
@@ -83,6 +92,7 @@ const Repport = () => {
                                 <th className="border border-gray-300 px-4 py-2">Date</th>
                                 <th className="border border-gray-300 px-4 py-2">Status</th>
                                 <th className="border border-gray-300 px-4 py-2">Report</th>
+                                <th className="border border-gray-300 px-4 py-2">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -94,7 +104,10 @@ const Repport = () => {
                                     <td className="border border-gray-300 px-4 py-2 text-center">{test.date}</td>
                                     <td className="border border-gray-300 px-4 py-2 text-center">{test.status}</td>
                                     <td className="border border-gray-300 px-4 py-2 text-center">
-                                        {test?.report ? '---' : <button onClick={() => handleAddReport(test._id)} className='text-blue-600'>Add Report</button>}
+                                        {test.status == 'Canceled' || test.status == 'complete' && test.report !== '' ? '---' : <button onClick={() => handleAddReport(test?._id)} className='text-blue-600'>Add Report</button>}
+                                    </td>
+                                    <td className="border border-gray-300 px-4 py-2 text-center">
+                                        {test.status !== 'pending' && test.report !== '' ? '---' : <button onClick={() => handleCancel(test._id)} className='text-blue-600'>Cancel</button>}
                                     </td>
                                 </tr>
                             ))}
@@ -118,3 +131,11 @@ const Repport = () => {
 };
 
 export default Repport;
+
+
+// 1. Assignment Category: assignment12_category_0003
+// 2. Admin email:admin@gmail.com
+// 3. Admin password:!123Abc
+// 4. Front-end Live Site Link:
+// 5. Client Side GitHub Repository Link:
+// 6. Server Side GitHub Repository Link:

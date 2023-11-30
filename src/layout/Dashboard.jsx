@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import { IoMdHome } from "react-icons/io";
 import { FaCalendarDays } from "react-icons/fa6";
 import { MdOutlinePayment } from "react-icons/md";
@@ -40,7 +40,7 @@ const Dashboard = () => {
                 </ul>
             </div>
             <div className="w-full">
-                <div className="py-2 bg-black"></div>
+                <div className="py-2 bg-black text-white flex justify-end px-8"> <Link to='/'>Go Home</Link> </div>
                 <div className="w-full p-4">
                     <Outlet />
                     <ToastContainer />
