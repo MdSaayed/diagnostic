@@ -39,7 +39,7 @@ const TestDetails = () => {
                         <div className="flex gap-2 items-center mb-3"><SlCalender className="text-[14px]" /> <span className="text-[14px]">{formatDate(date)}</span></div>
                         <div className="flex gap-2 items-center mb-3"><FiDollarSign className="text-[14px]" /> <span className="text-[14px]">{price}</span></div>
                         <div className="mt-8">
-                            <button onClick={() => document.getElementById('my_modal_3').showModal()} className='py-1 px-4 w-full rounded-md bg-[#0067FF] text-white'>Book Now</button>
+                            {slot < 1 ? < button className='py-1 px-4 w-full rounded-md bg-[#0066ffa4] text-white'>Book Now</button> : <button onClick={() => document.getElementById('my_modal_3').showModal()} className='py-1 px-4 w-full rounded-md bg-[#0067FF] text-white'>Book Now</button>}
                         </div>
                         {/* You can open the modal using document.getElementById('ID').showModal() method */}
                         <dialog id="my_modal_3" className="modal">
@@ -55,7 +55,7 @@ const TestDetails = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

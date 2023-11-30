@@ -35,7 +35,9 @@ const AllTest = () => {
                                 <div className="flex gap-2 items-center">Available slots: <span className="text-[12px]">{item?.slot}</span></div>
                             </div>
                             <div>
-                                <Link to={`/tests/details/${item?._id}`}><span className="text-blue-600 flex text-[12px] items-center gap-3">Details<RiArrowRightUpLine /></span></Link>
+                                <Link to={`/tests/details/${item?._id}`}>
+                                    <span className="text-blue-600 flex text-[12px] items-center gap-3">Details<RiArrowRightUpLine /></span>
+                                </Link>
                             </div>
                         </div>
                     </div>

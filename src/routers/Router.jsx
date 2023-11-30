@@ -21,6 +21,8 @@ import UpdateTest from "../pages/dashboard/updateTest/UpdateTest";
 import Payment from "../components/payement/Payment";
 import PaymentHistory from "../pages/dashboard/pymentHistory/PaymentHistory";
 import Error from "../pages/404";
+import Repport from "../pages/dashboard/report/Repport";
+import SeeReport from "../pages/dashboard/seeReport/SeeReport";
 
 const router = createBrowserRouter([
     {
@@ -43,7 +45,7 @@ const router = createBrowserRouter([
             {
                 path: '/tests/details/:id',
                 element: <TestDetails />,
-                loader: ({ params }) => fetch(`http://localhost:5000/tests/${params.id}`)
+                loader: ({ params }) => fetch(`https://server-henna-phi.vercel.app/tests/${params.id}`)
             },
             {
                 path: '/signin',
@@ -84,13 +86,22 @@ const router = createBrowserRouter([
                 element: <TestResult />
             },
             {
+                path: 'testReport',
+                element: <Repport />
+            },
+            {
+                path: 'seeReport/:id',
+                element: <SeeReport />,
+                loader: ({ params }) => fetch(`http://localhost:5000/seeReport/${params.id}`)
+            },
+            {
                 path: 'allTestTable',
                 element: <AllTestTable />
             },
             {
                 path: 'test/update/:id',
                 element: <UpdateTest />,
-                loader: ({ params }) => fetch(`http://localhost:5000/tests/${params.id}`)
+                loader: ({ params }) => fetch(`https://server-henna-phi.vercel.app/tests/${params.id}`)
             },
             {
                 path: 'addTest',
