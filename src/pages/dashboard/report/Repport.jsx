@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useAuth from '../../../hooks/useAuth';
 import useAxiosSecure from '../../../components/hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
+import './test.css';
 
 const Repport = () => {
     const axiosSecuire = useAxiosSecure();
@@ -10,16 +11,57 @@ const Repport = () => {
     const [currentTestId, setCurrentTestId] = useState(null);
     const [searchText, setSearchText] = useState('');
     const [displayData, setDisplayData] = useState([]);
+    // pagination related 
+    const [count, setCount] = useState();
+    const [itemPerPage, setItemsPerPage] = useState(5);
+    const [currentPage, setCurrentPage] = useState(0)
+    const numberOfPages = Math.ceil(count ? count / itemPerPage : null);
+    const pages = [...Array(numberOfPages).keys()];
+    const [testResult, seTestResult] = useState([]);
 
-    const { data: testResult = [], isPending: loading, refetch } = useQuery({
-        queryKey: ['testResult'],
-        queryFn: async () => {
-            const res = await axiosSecuire.get(`/testResult`);
-            setDisplayData(res.data);
-            return res.data;
+    console.log(count, 'count')
+    console.log(itemPerPage, 'itemPerPage')
+    console.log(currentPage, 'currentPage')
+    console.log(numberOfPages, 'numberOfPages')
+    console.log(pages, 'pages')
+
+
+    // const { data: testResult = [], isPending: loading, refetch } = useQuery({
+    //     queryKey: ['testResult'],
+    //     queryFn: async () => {
+    //         const res = await axiosSecuire.get(`/testResult?page=${currentPage}&size=${itemPerPage}`);
+    //         setDisplayData(res.data);
+    //         return res.data;
+    //     }
+    // });
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/testResult?page=${currentPage}&size=${itemPerPage}`)
+            .then(res => res.json())
+            .then(data => {
+                seTestResult(data)
+                setDisplayData(data)
+            })
+    }, [currentPage, itemPerPage]);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/testResultCount')
+            .then(res => res.json())
+            .then(data => setCount(data.count))
+    }, [])
+
+
+    // next and prvious
+    const handlePrev = () => {
+        if (currentPage > 0) {
+            setCurrentPage(currentPage - 1)
         }
-    });
-
+    }
+    const handleNext = () => {
+        if (currentPage < numberOfPages - 1) {
+            setCurrentPage(currentPage + 1)
+        }
+    }
 
 
     // handle add report
@@ -113,6 +155,15 @@ const Repport = () => {
                             ))}
                         </tbody>
                     </table>
+                    <div className="">
+                        <div className='pagination flex gap-4 justify-center mt-8'>
+                            <button className='' onClick={handlePrev}>Prev</button>
+                            {
+                                pages.map(page => <button onClick={() => setCurrentPage(page)} className={currentPage == page ? 'active-pagination' : null} key={page}>{page}</button>)
+                            }
+                            <button className='' onClick={handleNext}>Next</button>
+                        </div>
+                    </div>
                     <dialog id="my_modal_3" className="modal">
                         <div className="modal-box">
                             <form method="dialog">
@@ -133,9 +184,4 @@ const Repport = () => {
 export default Repport;
 
 
-// 1. Assignment Category: assignment12_category_0003
-// 2. Admin email:admin@gmail.com
-// 3. Admin password:!123Abc
-// 4. Front-end Live Site Link:
-// 5. Client Side GitHub Repository Link:
-// 6. Server Side GitHub Repository Link:
+
