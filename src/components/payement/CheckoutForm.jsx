@@ -26,11 +26,10 @@ const CheckoutForm = ({ price, testBooking }) => {
 
     const handleCoupon = (e) => {
         e.preventDefault();
-
         const appliedCouponCode = 'DISC30';
-
+        const discount = 30;
         if (couponCode === appliedCouponCode) {
-            const newPayAmount = payAmount - 30;
+            const newPayAmount = (payAmount * discount) / 100;
             setPayAmount(newPayAmount);
             console.log(appliedCouponCode, newPayAmount);
         }

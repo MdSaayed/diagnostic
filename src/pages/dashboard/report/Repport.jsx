@@ -36,7 +36,7 @@ const Repport = () => {
     // });
 
     useEffect(() => {
-        fetch(`http://localhost:5000/testResult?page=${currentPage}&size=${itemPerPage}`)
+        fetch(`https://server-henna-phi.vercel.app/testResult?page=${currentPage}&size=${itemPerPage}`)
             .then(res => res.json())
             .then(data => {
                 seTestResult(data)
@@ -45,7 +45,7 @@ const Repport = () => {
     }, [currentPage, itemPerPage]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/testResultCount')
+        fetch('https://server-henna-phi.vercel.app/testResultCount')
             .then(res => res.json())
             .then(data => setCount(data.count))
     }, [])

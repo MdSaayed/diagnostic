@@ -45,7 +45,7 @@ const router = createBrowserRouter([
             {
                 path: '/tests/details/:id',
                 element: <Private><TestDetails /></Private>,
-                loader: ({ params }) => fetch(`http://localhost:5000/tests/${params.id}`)
+                loader: ({ params }) => fetch(`https://server-henna-phi.vercel.app/tests/${params.id}`)
             },
             {
                 path: '/signin',
@@ -92,7 +92,7 @@ const router = createBrowserRouter([
             {
                 path: 'seeReport/:id',
                 element: <Private><SeeReport /></Private>,
-                loader: ({ params }) => fetch(`http://localhost:5000/seeReport/${params.id}`)
+                loader: ({ params }) => fetch(`https://server-henna-phi.vercel.app/seeReport/${params.id}`)
             },
             {
                 path: 'allTestTable',
@@ -101,7 +101,7 @@ const router = createBrowserRouter([
             {
                 path: 'test/update/:id',
                 element: <AdminRoute><UpdateTest /></AdminRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/tests/${params.id}`)
+                loader: ({ params }) => fetch(`https://server-henna-phi.vercel.app/tests/${params.id}`)
             },
             {
                 path: 'addTest',
