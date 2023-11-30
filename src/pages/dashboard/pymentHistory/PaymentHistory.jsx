@@ -14,7 +14,6 @@ const PaymentHistory = () => {
             return res.data
         }
     })
-    console.log(payments);
 
     return (
         <div className="overflow-x-auto">
@@ -28,6 +27,7 @@ const PaymentHistory = () => {
                         <tr>
                             <th className="border border-gray-300 px-4 py-2">Test Name</th>
                             <th className="border border-gray-300 px-4 py-2">Email</th>
+                            <th className="border border-gray-300 px-4 py-2">Transaction ID</th>
                             <th className="border border-gray-300 px-4 py-2">Date</th>
                         </tr>
                     </thead>
@@ -36,6 +36,7 @@ const PaymentHistory = () => {
                             <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : ''}>
                                 <td className="border border-gray-300 px-4 py-2 text-center">{payment?.testName}</td>
                                 <td className="border border-gray-300 px-4 py-2 text-center">{payment.email}</td>
+                                <td className="border border-gray-300 px-4 py-2 text-center">{payment.transactionId}</td>
                                 <td className="border border-gray-300 px-4 py-2 text-center">{payment.date}</td>
                             </tr>
                         ))}

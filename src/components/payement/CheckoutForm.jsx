@@ -6,7 +6,6 @@ import useAxiosPublic from "../hooks/useAxiosPublic";
 
 
 const CheckoutForm = ({ price, testBooking }) => {
-    const axiosPublic = useAxiosPublic;
     const [err, setErr] = useState('');
     const [transactionId, setTransactionId] = useState('');
     const { user } = useAuth();
@@ -69,7 +68,8 @@ const CheckoutForm = ({ price, testBooking }) => {
                     testId,
                     date: new Date(),
                     status,
-                    slot
+                    slot,
+                    transactionId: paymentIntent.id
                 }
                 const res = await axiosSecuire.post('/payments', payment);
                 console.log(res);

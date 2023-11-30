@@ -20,11 +20,13 @@ import AllTestTable from "../pages/dashboard/allTextTable'/AllTestTable";
 import UpdateTest from "../pages/dashboard/updateTest/UpdateTest";
 import Payment from "../components/payement/Payment";
 import PaymentHistory from "../pages/dashboard/pymentHistory/PaymentHistory";
+import Error from "../pages/404";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Layout />,
+        errorElement: <Error />,
         children: [
             {
                 path: '/',

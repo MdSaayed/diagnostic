@@ -1,69 +1,51 @@
-// TestResultsPage.js
-
 import React from 'react';
-
-const testData = [
-    {
-        id: 1,
-        title: 'Blood Test',
-        description: 'A comprehensive blood test to assess your health.',
-        image: 'blood_test_image.jpg',
-        dates: ['2023-11-21', '2023-11-22', '2023-11-23'],
-        slots: [
-            { time: '09:00 AM', available: true },
-            { time: '02:00 PM', available: false },
-            // Add more slots as needed
-        ],
-    },
-    {
-        id: 2,
-        title: 'X-Ray',
-        description: 'An X-Ray examination to detect any abnormalities.',
-        image: 'xray_image.jpg',
-        dates: ['2023-11-22', '2023-11-23', '2023-11-24'],
-        slots: [
-            { time: '10:00 AM', available: true },
-            { time: '03:00 PM', available: true },
-            // Add more slots as needed
-        ],
-    },
-    // Add more tests as needed
-];
+import useAxiosSecure from '../../../components/hooks/useAxiosSecure';
+import useAuth from '../../../hooks/useAuth';
+import { useQuery } from '@tanstack/react-query';
 
 const TestResult = () => {
-    // Filter tests for future dates
-    const today = new Date().toISOString().split('T')[0];
-    const futureTests = testData.filter(test => test.dates[0] >= today);
+    const axiosSecuire = useAxiosSecure();
+    const { user } = useAuth();
+
+    const { data: testResult = [], isPending: loading, refetch } = useQuery({
+        queryKey: ['testResult'],
+        queryFn: async () => {
+            const res = await axiosSecuire.get(`/testResult/${user?.email}`);
+            return res.data
+        }
+    })
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
-            <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
-                <h2 className="text-2xl font-semibold mb-4">Available Tests</h2>
+        <div className="overflow-x-auto">
+            {testResult.length < 1 ? <>
+                <div className='w-full h-[90vh] flex items-center justify-center'>
+                    <p>No data found.</p>
+                </div>
+            </> : <>
+                <table className="min-w-full border border-gray-300">
+                    <thead className="bg-gray-100">
+                        <tr>
+                            <th className="border border-gray-300 px-4 py-2">Test Name</th>
+                            <th className="border border-gray-300 px-4 py-2">Email</th>
+                            <th className="border border-gray-300 px-4 py-2">Transaction ID</th>
+                            <th className="border border-gray-300 px-4 py-2">Date</th>
+                            <th className="border border-gray-300 px-4 py-2">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {testResult.map((test, index) => (
+                            <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : ''}>
+                                <td className="border border-gray-300 px-4 py-2 text-center">{test?.testName}</td>
+                                <td className="border border-gray-300 px-4 py-2 text-center">{test.email}</td>
+                                <td className="border border-gray-300 px-4 py-2 text-center">{test.transactionId}</td>
+                                <td className="border border-gray-300 px-4 py-2 text-center">{test.date}</td>
+                                <td className="border border-gray-300 px-4 py-2 text-center">{test.status}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </>}
 
-                {futureTests.map(test => (
-                    <div key={test.id} className="mb-6">
-                        <img
-                            src={test.image}
-                            alt={test.title}
-                            className="w-full h-40 object-cover mb-4 rounded"
-                        />
-                        <h3 className="text-xl font-semibold mb-2">{test.title}</h3>
-                        <p className="text-gray-600 mb-2">{test.description}</p>
-
-                        <p className="mb-2">Available Dates:</p>
-                        <ul className="list-disc ml-6 mb-4">
-                            {test.dates.map(date => (
-                                <li key={date}>{date}</li>
-                            ))}
-                        </ul>
-
-                        <p className="mb-2">Available Slots:</p>
-                        <ul className="list-disc ml-6">
-                            {test.slots}
-                        </ul>
-                    </div>
-                ))}
-            </div>
         </div>
     );
 };
