@@ -30,6 +30,9 @@ const AllAppointment = () => {
                     <p>No data found.</p>
                 </div>
             </> : <>
+                <div>
+                    <h2 className="text-3xl text-center py-4">All Appointmnt</h2>
+                </div>
                 <table className="min-w-full border border-gray-300">
                     <thead className="bg-gray-100">
                         <tr>

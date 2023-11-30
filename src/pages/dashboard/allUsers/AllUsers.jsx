@@ -58,9 +58,12 @@ const AllUsers = () => {
             .catch(err => console.log(err))
     }
 
-  
+
     return (
         <div>
+            <div>
+                <h2 className="text-3xl text-center py-4">All User</h2>
+            </div>
             <div>
                 <h2>TOTAL USERS: {users?.length}</h2>
                 {console.log(users)}

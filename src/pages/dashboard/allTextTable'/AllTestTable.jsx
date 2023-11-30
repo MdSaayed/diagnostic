@@ -34,34 +34,37 @@ const AllTestTable = () => {
                     <p>No data found.</p>
                 </div>
             ) : (
-                <table className="min-w-full border border-gray-300">
-                    <thead className="bg-gray-100">
-                        <tr>
-                            <th className="border border-gray-300 px-4 py-2">Image</th>
-                            <th className="border border-gray-300 px-4 py-2">Test Name</th>
-                            <th className="border border-gray-300 px-4 py-2">Price</th>
-                            <th className="border border-gray-300 px-4 py-2">Date</th>
-                            <th className="border border-gray-300 px-4 py-2">Slots</th>
-                            <th className="border border-gray-300 px-4 py-2">Details</th>
-                            <th className="border border-gray-300 px-4 py-2">Update</th>
-                            <th className="border border-gray-300 px-4 py-2">Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {tests.map((test, index) => (
-                            <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : ''}>
-                                <td className="border border-gray-300 px-4 py-2 text-center"><img className='w-[100px]' src={test?.image} alt="" /></td>
-                                <td className="border border-gray-300 px-4 py-2 text-center">{test?.testName}</td>
-                                <td className="border border-gray-300 px-4 py-2 text-center">${test?.price}</td>
-                                <td className="border border-gray-300 px-4 py-2 text-center">{formatDate(test?.date)}</td>
-                                <td className="border border-gray-300 px-4 py-2 text-center">{test?.slot}</td>
-                                <td className="border border-gray-300 px-4 py-2 text-center">{test?.details?.length > 15 ? test?.details.slice(0, 15) + '...' : test.details}</td>
-                                <td className="border border-gray-300 px-4 py-2 text-center cursor-pointer"><Link to={`/dashboard/test/update/${test._id}`}><FaRegEdit /></Link></td>
-                                <td onClick={() => handleDelete(test._id)} className="border border-gray-300 px-4 py-2 text-center cursor-pointer"><AiOutlineDelete /></td>
+                <div>
+                    <h2 className="text-3xl text-center py-4">All Test</h2>
+                    <table className="min-w-full border border-gray-300">
+                        <thead className="bg-gray-100">
+                            <tr>
+                                <th className="border border-gray-300 px-4 py-2">Image</th>
+                                <th className="border border-gray-300 px-4 py-2">Test Name</th>
+                                <th className="border border-gray-300 px-4 py-2">Price</th>
+                                <th className="border border-gray-300 px-4 py-2">Date</th>
+                                <th className="border border-gray-300 px-4 py-2">Slots</th>
+                                <th className="border border-gray-300 px-4 py-2">Details</th>
+                                <th className="border border-gray-300 px-4 py-2">Update</th>
+                                <th className="border border-gray-300 px-4 py-2">Delete</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {tests.map((test, index) => (
+                                <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : ''}>
+                                    <td className="border border-gray-300 px-4 py-2 text-center"><img className='w-[100px]' src={test?.image} alt="" /></td>
+                                    <td className="border border-gray-300 px-4 py-2 text-center">{test?.testName}</td>
+                                    <td className="border border-gray-300 px-4 py-2 text-center">${test?.price}</td>
+                                    <td className="border border-gray-300 px-4 py-2 text-center">{formatDate(test?.date)}</td>
+                                    <td className="border border-gray-300 px-4 py-2 text-center">{test?.slot}</td>
+                                    <td className="border border-gray-300 px-4 py-2 text-center">{test?.details?.length > 15 ? test?.details.slice(0, 15) + '...' : test.details}</td>
+                                    <td className="border border-gray-300 px-4 py-2 text-center cursor-pointer"><Link to={`/dashboard/test/update/${test._id}`}><FaRegEdit /></Link></td>
+                                    <td onClick={() => handleDelete(test._id)} className="border border-gray-300 px-4 py-2 text-center cursor-pointer"><AiOutlineDelete /></td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             )}
         </div>
     );

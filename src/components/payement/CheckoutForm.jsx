@@ -2,8 +2,6 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
-import useAxiosPublic from "../hooks/useAxiosPublic";
-
 
 const CheckoutForm = ({ price, testBooking }) => {
     const [err, setErr] = useState('');
@@ -12,17 +10,31 @@ const CheckoutForm = ({ price, testBooking }) => {
     const [clientSecret, setClientSecret] = useState('');
     const stripe = useStripe();
     const elements = useElements();
-    const axiosSecuire = useAxiosSecure();
+    const axiosSecure = useAxiosSecure();
+    const [payAmount, setPayAmount] = useState(price);
     const { testName, testId, status, slot } = testBooking;
+    const [couponCode, setCouponCode] = useState('');
 
     useEffect(() => {
-        axiosSecuire.post(`/create-payment-intent`, { price })
+        axiosSecure.post(`/create-payment-intent`, { payAmount })
             .then(res => {
                 console.log(res.data.clientSecret);
                 setClientSecret(res.data.clientSecret);
             });
 
-    }, [axiosSecuire, price])
+    }, [axiosSecure, payAmount]);
+
+    const handleCoupon = (e) => {
+        e.preventDefault();
+
+        const appliedCouponCode = 'DISC30';
+
+        if (couponCode === appliedCouponCode) {
+            const newPayAmount = payAmount - 30;
+            setPayAmount(newPayAmount);
+            console.log(appliedCouponCode, newPayAmount);
+        }
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -71,7 +83,7 @@ const CheckoutForm = ({ price, testBooking }) => {
                     slot,
                     transactionId: paymentIntent.id
                 }
-                const res = await axiosSecuire.post('/payments', payment);
+                const res = await axiosSecure.post('/payments', payment);
                 console.log(res);
             }
         }
@@ -96,12 +108,16 @@ const CheckoutForm = ({ price, testBooking }) => {
                 }}
             />
             {err ? <p className="my-2 text-red-600">{err}</p> : ''}
-            {transactionId ? <p className="text-green-600 text-[10px] my-2">Payment successfull. Transaction ID:{transactionId}</p> : ''}
+            {transactionId ? <p className="text-green-600 text-[10px] my-2">Payment successful. Transaction ID: {transactionId}</p> : ''}
+            {/* displaye coupon form */}
+            <div className="flex items-center">
+                <input type="text py-[1px]" onChange={(e) => setCouponCode(e.target.value)} />
+                <input className="bg-blue-600 px-6 py-[2px] rounded-sm text-white" type="submit" value="Apply" onClick={handleCoupon} />
+            </div>
             <button type="submit" className="bg-blue-600 px-6 py-1 mt-4 rounded-sm text-white" disabled={!stripe || !clientSecret}>
-                ${price} Pay
+                ${payAmount} Pay
             </button>
         </form>
-
     );
 };
 

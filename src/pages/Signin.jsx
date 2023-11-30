@@ -12,7 +12,7 @@ const Signin = () => {
     const navigate = useNavigate();
     const [errEmail, setErrEmail] = useState('');
     const [errPass, setErrPass] = useState('');
-    const from = (location.state?.from?.pathname) || '/';
+    const from = (location.state?.from?.pathname) || '/dashboard/profile';
     console.log(location);
 
     // handle google signin
