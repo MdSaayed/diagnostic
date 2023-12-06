@@ -5,58 +5,43 @@ import { useQuery } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 import './test.css';
 
-const Repport = () => {
+const Report = () => {
     const axiosSecuire = useAxiosSecure();
     const [report, setReport] = useState('');
     const [currentTestId, setCurrentTestId] = useState(null);
     const [searchText, setSearchText] = useState('');
     const [displayData, setDisplayData] = useState([]);
-    // pagination related 
     const [count, setCount] = useState();
     const [itemPerPage, setItemsPerPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(0)
     const numberOfPages = Math.ceil(count ? count / itemPerPage : null);
     const pages = [...Array(numberOfPages).keys()];
-    const [testResult, seTestResult] = useState([]);
+    const [testResult, setTestResult] = useState([]);
 
-    console.log(count, 'count')
-    console.log(itemPerPage, 'itemPerPage')
-    console.log(currentPage, 'currentPage')
-    console.log(numberOfPages, 'numberOfPages')
-    console.log(pages, 'pages')
-
-
-    // const { data: testResult = [], isPending: loading, refetch } = useQuery({
-    //     queryKey: ['testResult'],
-    //     queryFn: async () => {
-    //         const res = await axiosSecuire.get(`/testResult?page=${currentPage}&size=${itemPerPage}`);
-    //         setDisplayData(res.data);
-    //         return res.data;
-    //     }
-    // });
-
+    // data fatching
     useEffect(() => {
         fetch(`https://server-henna-phi.vercel.app/testResult?page=${currentPage}&size=${itemPerPage}`)
             .then(res => res.json())
             .then(data => {
-                seTestResult(data)
-                setDisplayData(data)
+                setTestResult(data);
+                setDisplayData(data);
             })
     }, [currentPage, itemPerPage]);
 
+    // total data on testResult collection
     useEffect(() => {
         fetch('https://server-henna-phi.vercel.app/testResultCount')
             .then(res => res.json())
             .then(data => setCount(data.count))
     }, [])
 
-
-    // next and prvious
+    // handle paginations
     const handlePrev = () => {
         if (currentPage > 0) {
             setCurrentPage(currentPage - 1)
         }
     }
+
     const handleNext = () => {
         if (currentPage < numberOfPages - 1) {
             setCurrentPage(currentPage + 1)
@@ -64,13 +49,13 @@ const Repport = () => {
     }
 
 
-    // handle add report
+// handle add report
     const handleAddReport = (id) => {
         setCurrentTestId(id);
         document.getElementById('my_modal_3').showModal();
     };
 
-    // submit report
+    // handle submit report
     const handleSubmitReport = async () => {
         try {
             const updateReport = {
@@ -82,14 +67,12 @@ const Repport = () => {
                     setReport('');
                     toast.success('Report added successfully.');
                     document.getElementById('my_modal_3').close();
-                    refetch();
                 })
         } catch (error) {
             console.error('Error adding report:', error);
         }
     };
 
-    // Correct the search functionality
     const handleSearch = (e) => {
         const searchTerm = e.target.value.toLowerCase();
         const filteredData = testResult.filter(item => item.email.includes(searchTerm));
@@ -97,16 +80,19 @@ const Repport = () => {
         setDisplayData(filteredData);
     };
 
-
-    // handleCancel
-    const handleCancel = (id) => {
-        const res = axiosSecuire.patch(`/testsCancel/${id}`);
-        if (res) {
+    const handleCancel = async (id) => {
+        try {
+            await axiosSecuire.patch(`/testsCancel/${id}`);
             toast.success('Reservation is canceled.');
+        } catch (error) {
+            console.error('Error canceling reservation:', error);
         }
     }
 
-
+    const formatDate = (timestamp) => {
+        const options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZoneName: 'short' };
+        return new Date(timestamp).toLocaleString(undefined, options);
+    };
 
     return (
         <div className="overflow-x-auto">
@@ -118,7 +104,6 @@ const Repport = () => {
                 <>
                     <div>
                         <h2 className="text-3xl text-center py-4">All Reservation</h2>
-
                     </div>
                     <div className='flex justify-end mb-1'>
                         <form>
@@ -143,13 +128,21 @@ const Repport = () => {
                                     <td className="border border-gray-300 px-4 py-2 text-center">{test?.testName}</td>
                                     <td className="border border-gray-300 px-4 py-2 text-center">{test.email}</td>
                                     <td className="border border-gray-300 px-4 py-2 text-center">{test.transactionId}</td>
-                                    <td className="border border-gray-300 px-4 py-2 text-center">{test.date}</td>
+                                    <td className="border border-gray-300 px-4 py-2 text-center">{formatDate(test.date)}</td>
                                     <td className="border border-gray-300 px-4 py-2 text-center">{test.status}</td>
                                     <td className="border border-gray-300 px-4 py-2 text-center">
-                                        {test.status == 'Canceled' || test.status == 'complete' && test.report !== '' ? '---' : <button onClick={() => handleAddReport(test?._id)} className='text-blue-600'>Add Report</button>}
+                                        {test.status === 'Canceled' || (test.status === 'complete' && test.report !== '') ? '---' : (
+                                            <button onClick={() => handleAddReport(test?._id)} className='text-blue-600'>
+                                                Add Report
+                                            </button>
+                                        )}
                                     </td>
                                     <td className="border border-gray-300 px-4 py-2 text-center">
-                                        {test.status !== 'pending' && test.report !== '' ? '---' : <button onClick={() => handleCancel(test._id)} className='text-blue-600'>Cancel</button>}
+                                        {test.status !== 'pending' && test.report !== '' ? '---' : (
+                                            <button onClick={() => handleCancel(test._id)} className='text-blue-600'>
+                                                Cancel
+                                            </button>
+                                        )}
                                     </td>
                                 </tr>
                             ))}
@@ -158,9 +151,7 @@ const Repport = () => {
                     <div className="">
                         <div className='pagination flex gap-4 justify-center mt-8'>
                             <button className='' onClick={handlePrev}>Prev</button>
-                            {
-                                pages.map(page => <button onClick={() => setCurrentPage(page)} className={currentPage == page ? 'active-pagination' : null} key={page}>{page}</button>)
-                            }
+                            {pages.map(page => <button onClick={() => setCurrentPage(page)} className={currentPage === page ? 'active-pagination' : null} key={page}>{page}</button>)}
                             <button className='' onClick={handleNext}>Next</button>
                         </div>
                     </div>
@@ -181,7 +172,4 @@ const Repport = () => {
     );
 };
 
-export default Repport;
-
-
-
+export default Report;

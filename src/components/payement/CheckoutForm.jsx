@@ -2,6 +2,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const CheckoutForm = ({ price, testBooking }) => {
     const [err, setErr] = useState('');
@@ -14,6 +15,7 @@ const CheckoutForm = ({ price, testBooking }) => {
     const [payAmount, setPayAmount] = useState(price);
     const { testName, testId, status, slot } = testBooking;
     const [couponCode, setCouponCode] = useState('');
+    const [couponErr, setCouponErr] = useState('');
 
     useEffect(() => {
         axiosSecure.post(`/create-payment-intent`, { payAmount })
@@ -26,12 +28,15 @@ const CheckoutForm = ({ price, testBooking }) => {
 
     const handleCoupon = (e) => {
         e.preventDefault();
-        const appliedCouponCode = 'DISC30';
+        const appliedCouponCode = 'DIS30';
         const discount = 30;
         if (couponCode === appliedCouponCode) {
             const newPayAmount = (payAmount * discount) / 100;
             setPayAmount(newPayAmount);
             console.log(appliedCouponCode, newPayAmount);
+            setCouponErr('');
+        } else {
+            setCouponErr('Invalid Coupon code.')
         }
     };
 
@@ -83,6 +88,15 @@ const CheckoutForm = ({ price, testBooking }) => {
                     transactionId: paymentIntent.id
                 }
                 const res = await axiosSecure.post('/payments', payment);
+                if (res) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Payment successfull.",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
                 console.log(res);
             }
         }
@@ -109,9 +123,14 @@ const CheckoutForm = ({ price, testBooking }) => {
             {err ? <p className="my-2 text-red-600">{err}</p> : ''}
             {transactionId ? <p className="text-green-600 text-[10px] my-2">Payment successful. Transaction ID: {transactionId}</p> : ''}
             {/* displaye coupon form */}
-            <div className="flex items-center">
-                <input type="text py-[1px]" onChange={(e) => setCouponCode(e.target.value)} />
-                <input className="bg-blue-600 px-6 py-[2px] rounded-sm text-white" type="submit" value="Apply" onClick={handleCoupon} />
+            <div>
+                <div className="flex items-center mi-4">
+                    <input type="text py-[1px]" onChange={(e) => setCouponCode(e.target.value)} />
+                    <input className="bg-blue-600 px-6 py-[2px] rounded-sm text-white" type="submit" value="Apply" onClick={handleCoupon} />
+                </div>
+                <div>
+                    {couponErr && <p className="text-red-700">{couponErr}</p>}
+                </div>
             </div>
             <button type="submit" className="bg-blue-600 px-6 py-1 mt-4 rounded-sm text-white" disabled={!stripe || !clientSecret}>
                 ${payAmount} Pay

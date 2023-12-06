@@ -6,7 +6,7 @@ import SectionHeading from "../sectionHeading/SectionHeading";
 const Review = () => {
     return (
         <div className="max-w-6xl mx-auto py-16">
-            <SectionHeading heading={`What our patient say`} desc={`World-class care for everyone. Our health System <br/>offers unmatched, expert health care.`} textStyle={'center'} />
+            <SectionHeading heading={`What our patient say`} desc={`Grateful patients praise our compassionate care,<br/> expertise, and commitment to ensuring positive health outcomes.`} textStyle={'center'} />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-16">
                 <div className='hover:bg-[#0067FF] rounded p-4 hover:shadow hover:text-white'>
                     <div className='flex gap-4'>
@@ -22,7 +22,7 @@ const Review = () => {
                             </div>
                         </div>
                     </div>
-                    <p className='mt-2'>“I have taken medical services from them. They treat so well and they are provding the best medical services.”</p>
+                    <p className='mt-2'>“Outstanding service! The diagnostic center provided quick and accurate results for my tests. The staff was friendly and the facility was clean. I highly recommend their services.”</p>
                 </div>
                 <div className='hover:bg-[#0067FF] rounded p-4 hover:shadow hover:text-white'>
                     <div className='flex gap-4'>
@@ -38,7 +38,7 @@ const Review = () => {
                             </div>
                         </div>
                     </div>
-                    <p className='mt-2'>“I have taken medical services from them. They treat so well and they are provding the best medical services.”</p>
+                    <p className='mt-2'>“Great experience at the diagnostic center. The staff was professional and efficient. Results were delivered promptly, and the process was smooth. Overall, a reliable and convenient service.”</p>
                 </div>
                 <div className='hover:bg-[#0067FF] rounded p-4 hover:shadow hover:text-white'>
                     <div className='flex gap-4'>
@@ -54,7 +54,7 @@ const Review = () => {
                             </div>
                         </div>
                     </div>
-                    <p className='mt-2'>“I have taken medical services from them. They treat so well and they are provding the best medical services.”</p>
+                    <p className='mt-2'>“I was impressed by the level of expertise and attention to detail at this diagnostic center. The staff explained the procedures thoroughly, making me feel at ease. Fast and reliable results. Definitely a top-notch facility!”</p>
                 </div>
             </div>
         </div>

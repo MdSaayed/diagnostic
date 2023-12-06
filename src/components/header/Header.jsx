@@ -1,19 +1,18 @@
 import { useContext } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../../provider/AuthProvider';
 import { toast } from 'react-toastify';
-import useCart from '../hooks/useCart';
-import { LuShoppingCart } from "react-icons/lu";
 import { useState } from "react";
 import { GrClose } from 'react-icons/gr';
 import { HiBars3 } from 'react-icons/hi2';
 import { IoIosLogOut } from 'react-icons/io';
-import { BsMoonStars, BsSun } from 'react-icons/bs';
+import UserStatus from './../hooks/UserStatus';
 
 
 const Header = () => {
     const { signOutUser, user } = useContext(AuthContext);
     const [menu, setMenu] = useState(false);
+    const [userStatus] = UserStatus();
     const handleSignOutUser = () => {
         signOutUser()
             .then(res => toast('SignOut successfull.'))
@@ -22,11 +21,11 @@ const Header = () => {
 
 
     return (
-        <div className="bg-[#153CF5] shadow-md z-50">
+        <div className="bg-gradient-to-r from-[#d0f8fc6c] to-[#fcebc4] z-50">
             {/* mobile and tablet navbar */}
             <nav className="md:flex justify-between items-center py-2 max-w-6xl mx-auto flex lg:hidden p-2 lg:px-0">
                 <ul>
-                    <li><NavLink className={'text-xl font-extrabold'}><p className='text-2xl text blod font-bold text-white'>Cure Vista</p>
+                    <li><NavLink className={'text-xl font-extrabold'}><p className='text-2xl text blod font-bold text-[#4E545F]'>Cure Vista</p>
                     </NavLink></li>
                 </ul>
                 <ul>
@@ -34,14 +33,14 @@ const Header = () => {
                         {
                             user ? <>
                                 <li className="text-center uppercase">
-                                    <NavLink to="/" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active font-semibold text-[10px]" : "text-white"}>{user?.displayName}</NavLink>
+                                    <NavLink to="/" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active font-semibold text-[10px]" : "text-[#4E545F]"}>{user?.displayName}</NavLink>
                                 </li>
                                 <li>
                                     <img className="w-[30px] h-[30px] rounded-full" src={user?.photoURL ? user?.photoURL : 'https://i.ibb.co/8xpdsJy/user-demo.png'} alt="" />
                                 </li>
                             </> : ''
                         }
-                        <HiBars3 onClick={() => setMenu(!menu)} className="text-2xl text-white" />
+                        <HiBars3 onClick={() => setMenu(!menu)} className="text-2xl text-[#4E545F]" />
                     </div>
 
                     <ul className={menu ? "flex items-center gap-6 relative" : 'hidden'}>
@@ -53,13 +52,31 @@ const Header = () => {
                             </li>
 
                             {
-                                user ? <>
-
+                                user && userStatus !== 'blocked' ? <>
                                     <li>
-                                        <NavLink to="/dashboard" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active text-black font-semibold" : ""}>Dashboard</NavLink>
+                                        <NavLink to="/dashboard/profile" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active text-black font-semibold" : ""}>Dashboard</NavLink>
                                     </li>
-                                </> : ''
+                                </> : <>
+                                    <li>
+                                        <NavLink onClick={() => document.getElementById('my_modal_3').showModal()} className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active text-black font-semibold" : ""}>Dashboard</NavLink>
+                                    </li>
+                                </>
                             }
+                            <li className="text-xl">
+                                <NavLink to="/appointment" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active text-black font-semibold" : ""}>Appointment</NavLink>
+                            </li>
+                            <li className="text-xl">
+                                <NavLink to="/allTest" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active text-black font-semibold" : ""}>All Test</NavLink>
+                            </li>
+                            <li className="text-xl">
+                                <NavLink to="/doctors" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active text-black font-semibold" : ""}>Doctors</NavLink>
+                            </li>
+                            <li className="text-xl">
+                                <NavLink to="/about" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active text-black font-semibold" : ""}>About US</NavLink>
+                            </li>
+                            <li className="text-xl">
+                                <NavLink to="/contact" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active text-black font-semibold" : ""}>Contact</NavLink>
+                            </li>
                             {
                                 user ? <>
                                     <li className="text-xl">
@@ -72,6 +89,7 @@ const Header = () => {
                                         </li>
                                     </>
                             }
+
                         </ul>
                     </ul>
                 </ul>
@@ -80,43 +98,78 @@ const Header = () => {
             {/* desktop navbar  */}
             <nav className="md:hidden justify-between items-center py-2 max-w-6xl mx-auto hidden lg:flex">
                 <ul>
-                    <li><NavLink className={'text-xl font-extrabold'}><p className='text-2xl text blod font-bold text-white'>Cure Vista</p>
+                    <li><NavLink className={'text-xl font-extrabold'}><p className='text-2xl text blod font-bold text-[#4E545F]'>Cure Vista</p>
                     </NavLink></li>
                 </ul>
                 <ul className="flex items-center gap-6">
                     <li>
-                        <NavLink to="/" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active text-white font-semibold" : "text-white"}>Home</NavLink>
+                        <NavLink to="/" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active text-[#4E545F] font-semibold" : "text-[#4E545F]"}>Home</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/appointment" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active text-white font-semibold" : "text-white"}>Appointment</NavLink>
+                        <NavLink to="/appointment" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active text-[#4E545F] font-semibold" : "text-[#4E545F]"}>Appointment</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/allTest" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active text-white font-semibold" : "text-white"}>All Test</NavLink>
+                        <NavLink to="/allTest" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active text-[#4E545F] font-semibold" : "text-[#4E545F]"}>All Test</NavLink>
                     </li>
+                    <li>
+                        <NavLink to="/doctors" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active text-[#4E545F] font-semibold" : "text-[#4E545F]"}>Doctors</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/about" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active text-[#4E545F] font-semibold" : "text-[#4E545F]"}>About Us</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/contact" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active text-[#4E545F] font-semibold" : "text-[#4E545F]"}>Contact</NavLink>
+                    </li>
+
+                    {
+                        userStatus == 'blocked' ? <>
+                            <li>
+                                <NavLink onClick={() => document.getElementById('my_modal_3').showModal()} className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active text-[#4E545F] font-semibold" : "text-[#4E545F]"}>Dashboard</NavLink>
+                            </li>
+
+                        </> : <></>
+                    }
+                    {
+                        user?.email ? <>
+                            <li>
+                                <NavLink to="/dashboard/profile" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active text-[#4E545F] font-semibold" : "text-[#4E545F]"}>Dashboard</NavLink>
+                            </li>
+                        </> : <></>
+                    }
+
                     {
                         user ? <>
                             <ul className="flex gap-1 items-center">
-                                <li>
-                                    <NavLink to="/dashboard" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active text-white font-semibold" : "text-white"}>Dashboard</NavLink>
-                                </li>
                                 <li className='ml-4'>
-                                    <NavLink to="/" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active text-white font-semibold" : "text-white"}>{user?.displayName}</NavLink>
+                                    <NavLink to="/" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active text-[#4E545F] font-semibold" : "text-[#4E545F]"}>{user?.displayName}</NavLink>
                                 </li>
                                 <li>
                                     <img className="w-[30px] h-[30px] rounded-full" src={user?.photoURL ? user?.photoURL : 'https://i.ibb.co/8xpdsJy/user-demo.png'} alt="" />
                                 </li>
                             </ul>
                             <li>
-                                <NavLink onClick={handleSignOutUser} className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active font-semibold" : "text-white"}><IoIosLogOut className="text-[1.3rem] text-white" /></NavLink>
+                                <NavLink onClick={handleSignOutUser} className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active font-semibold" : "text-[#4E545F]"}><IoIosLogOut className="text-[1.3rem] text-[#4E545F]" /></NavLink>
                             </li>
 
                         </> :
                             <>
                                 <li>
-                                    <NavLink to="/signin" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active text-white font-semibold" : "text-white"}>Signin</NavLink>
+                                    <NavLink to="/signin" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active text-[#4E545F] font-semibold" : "text-[#4E545F]"}>Signin</NavLink>
                                 </li>
                             </>
                     }
+                    {/* You can open the modal using document.getElementById('ID').showModal() method */}
+                    <dialog id="my_modal_3" className="modal">
+                        <div className="modal-box">
+                            <form method="dialog">
+                                {/* if there is a button in form, it will close the modal */}
+                                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                            </form>
+                            <div className="p-4">
+                                <p className="py-4">You can't access your dashboard, because your status is 'blocked'</p>
+                            </div>
+                        </div>
+                    </dialog>
                 </ul>
             </nav>
         </div>

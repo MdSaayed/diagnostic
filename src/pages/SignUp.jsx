@@ -187,7 +187,7 @@ const SignUp = () => {
                             }
                         </div>
                         <div className="mb-6">
-                            <input className=" py-1 px-2 w-full focus:outline-none dark:bg-[#121212]" type="file" name="avatar" id="avatar" />
+                            <input className=" py-1 px-2 w-full focus:outline-none dark:bg-[#121212]" type="file" required name="avatar" id="avatar" />
                         </div>
 
 

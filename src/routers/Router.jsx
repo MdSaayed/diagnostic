@@ -23,6 +23,13 @@ import PaymentHistory from "../pages/dashboard/pymentHistory/PaymentHistory";
 import Error from "../pages/404";
 import Repport from "../pages/dashboard/report/Repport";
 import SeeReport from "../pages/dashboard/seeReport/SeeReport";
+import Contact from "../pages/Contact";
+import OurDoctors from "../pages/OurDoctors";
+import AboutUs from "../pages/AboutUs";
+import AdminHome from "../pages/dashboard/adminHome/AdminHome";
+import AddBanner from "../pages/dashboard/banner/AddBanner";
+import ShowMyBanner from "../pages/dashboard/banner/ShowMyBanner";
+import UpdateBanner from "../pages/dashboard/banner/UpdateBanner";
 
 const router = createBrowserRouter([
     {
@@ -48,8 +55,20 @@ const router = createBrowserRouter([
                 loader: ({ params }) => fetch(`https://server-henna-phi.vercel.app/tests/${params.id}`)
             },
             {
+                path: '/doctors',
+                element: <OurDoctors />
+            },
+            {
+                path: '/about',
+                element: <AboutUs />
+            },
+            {
                 path: '/signin',
                 element: <Signin />
+            },
+            {
+                path: '/contact',
+                element: <Contact />
             },
             {
                 path: '/signup',
@@ -74,8 +93,25 @@ const router = createBrowserRouter([
                 element: <AdminRoute><AllUsers /></AdminRoute>
             },
             {
+                path: '/dashboard',
+                element: <AdminRoute><AdminHome /></AdminRoute>
+            },
+            {
                 path: 'profile',
                 element: <Private><Profile /></Private>
+            },
+            {
+                path: 'banners',
+                element: <Private><AddBanner /></Private>
+            },
+            {
+                path: 'updateBanner/:id',
+                element: <Private><UpdateBanner/></Private>,
+                loader: ({params})=> fetch(`https://server-henna-phi.vercel.app/banners/${params.id}`)
+            },
+            {
+                path: 'showBanners',
+                element: <Private><ShowMyBanner /></Private>
             },
             {
                 path: 'updateProfile',

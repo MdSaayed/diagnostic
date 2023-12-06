@@ -35,65 +35,65 @@ const Faq = () => {
                         <AccordionItem className="mb-4">
                             <AccordionItemHeading>
                                 <AccordionItemButton className="border py-2 px-4 rounded flex items-center justify-between">
-                                    <span>01    What is your medical care?</span>
+                                    <span>02    How do I schedule an appointment?</span>
                                     <span className="ml-2"><MdKeyboardArrowDown /></span>
                                 </AccordionItemButton>
                             </AccordionItemHeading>
                             <AccordionItemPanel className="px-4">
                                 <p className="text-gray-700">
-                                    One Medical was founded on a better model of care – one designed around patients’ needs that provides a higher level of quality and service affordably. We do this through innovative design, excellent customer service, and the efficient use of technology.
+                                    You can easily schedule appointments through our online portal or by contacting our reception during office hours.
                                 </p>
                             </AccordionItemPanel>
                         </AccordionItem>
                         <AccordionItem className="mb-4">
                             <AccordionItemHeading>
                                 <AccordionItemButton className="border py-2 px-4 rounded flex items-center justify-between">
-                                    <span>01    What is your medical care?</span>
+                                    <span>03    What insurance plans do you accept?</span>
                                     <span className="ml-2"><MdKeyboardArrowDown /></span>
                                 </AccordionItemButton>
                             </AccordionItemHeading>
                             <AccordionItemPanel className="px-4">
                                 <p className="text-gray-700">
-                                    One Medical was founded on a better model of care – one designed around patients’ needs that provides a higher level of quality and service affordably. We do this through innovative design, excellent customer service, and the efficient use of technology.
+                                    We accept a variety of insurance plans. Please check our website or contact our billing department for specific details.
                                 </p>
                             </AccordionItemPanel>
                         </AccordionItem>
                         <AccordionItem className="mb-4">
                             <AccordionItemHeading>
                                 <AccordionItemButton className="border py-2 px-4 rounded flex items-center justify-between">
-                                    <span>01    What is your medical care?</span>
+                                    <span>04    Can I request prescription refills online?</span>
                                     <span className="ml-2"><MdKeyboardArrowDown /></span>
                                 </AccordionItemButton>
                             </AccordionItemHeading>
                             <AccordionItemPanel className="px-4">
                                 <p className="text-gray-700">
-                                    One Medical was founded on a better model of care – one designed around patients’ needs that provides a higher level of quality and service affordably. We do this through innovative design, excellent customer service, and the efficient use of technology.
+                                    Yes, you can conveniently request prescription refills through our patient portal. Allow 24-48 hours for processing.
                                 </p>
                             </AccordionItemPanel>
                         </AccordionItem>
                         <AccordionItem className="mb-4">
                             <AccordionItemHeading>
                                 <AccordionItemButton className="border py-2 px-4 rounded flex items-center justify-between">
-                                    <span>01    What is your medical care?</span>
+                                    <span>05    How do I access my medical records?</span>
                                     <span className="ml-2"><MdKeyboardArrowDown /></span>
                                 </AccordionItemButton>
                             </AccordionItemHeading>
                             <AccordionItemPanel className="px-4">
                                 <p className="text-gray-700">
-                                    One Medical was founded on a better model of care – one designed around patients’ needs that provides a higher level of quality and service affordably. We do this through innovative design, excellent customer service, and the efficient use of technology.
+                                    Your medical records are accessible through our secure patient portal. Log in with your credentials to view and download records.
                                 </p>
                             </AccordionItemPanel>
                         </AccordionItem>
                         <AccordionItem className="mb-4">
                             <AccordionItemHeading>
                                 <AccordionItemButton className="border py-2 px-4 rounded flex items-center justify-between">
-                                    <span>01    What is your medical care?</span>
+                                    <span>06     What should I do in case of an emergency?</span>
                                     <span className="ml-2"><MdKeyboardArrowDown /></span>
                                 </AccordionItemButton>
                             </AccordionItemHeading>
                             <AccordionItemPanel className="px-4">
                                 <p className="text-gray-700">
-                                    One Medical was founded on a better model of care – one designed around patients’ needs that provides a higher level of quality and service affordably. We do this through innovative design, excellent customer service, and the efficient use of technology.
+                                    In case of a medical emergency, dial 911 immediately. For urgent matters related to our services, call our emergency hotline provided on our website.
                                 </p>
                             </AccordionItemPanel>
                         </AccordionItem>

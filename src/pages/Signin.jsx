@@ -1,14 +1,17 @@
 import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { AuthContext } from "../provider/AuthProvider";
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AiOutlineMail, AiFillFacebook, AiFillGoogleSquare } from 'react-icons/ai';
 import { RiLockPasswordLine } from 'react-icons/ri';
+import Swal from "sweetalert2";
+import useAxiosPublic from "../components/hooks/useAxiosPublic";
 
 
 const Signin = () => {
     const { signInUser, googleSignIn } = useContext(AuthContext);
     const location = useLocation();
+    const axiosPublic = useAxiosPublic();
     const navigate = useNavigate();
     const [errEmail, setErrEmail] = useState('');
     const [errPass, setErrPass] = useState('');
@@ -19,7 +22,26 @@ const Signin = () => {
     const handleGoogleSignin = () => {
         googleSignIn()
             .then(res => {
-                toast.success('Login successfully.');
+                // toast.success('Login successfully.');
+                const userInfo = {
+                    name: res.user?.displayName,
+                    email: res.user?.email,
+                    district: '',
+                    upazila: '',
+                    blood: '',
+                    avatar: res.user.photoUrl,
+                    role: 'user',
+                    status: 'active',
+                }
+                axiosPublic.post('/users', userInfo)
+                    .then(res => console.log(res.data))
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Login successfully.",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
                 location.state ? navigate(location.state) : navigate('/');
             })
             .then(err => console.log(err));
@@ -44,7 +66,14 @@ const Signin = () => {
         if (email && password) {
             signInUser(email, password)
                 .then(res => {
-                    toast('Login successfully.');
+                    toast.success('Login successfully.');
+                    // Swal.fire({
+                    //     position: "top-end",
+                    //     icon: "success",
+                    //     title: "Login successfully.",
+                    //     showConfirmButton: false,
+                    //     timer: 1500
+                    // });
                     navigate(from);
                 })
                 .catch(err => console.log(err))

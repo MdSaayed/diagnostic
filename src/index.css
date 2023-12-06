@@ -1,7 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 #checkout-form-modal input {
     border: 1px solid !important;
+}
+
+.font-family {
+    font-family: 'Manrope', sans-serif;
+}
+
+.active-d-nav{
+    --tw-text-opacity: 1;
+    color: rgb(0 0 0 / var(--tw-text-opacity));
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 3px;
+}
+.banner-menu1:hover .banner-menu2{
+    display: flex;
 }
